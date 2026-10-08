@@ -28,7 +28,8 @@ nav a:hover{color:var(--plata)}
 /* Portada */
 .hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:4rem 1.2rem;
   background:linear-gradient(rgba(11,18,32,.55),var(--noche)),url("img/portada-bosque.jpg") center/cover,var(--bruma)}
-.hero img.logo{width:min(380px,80%);margin:0 auto 1rem}
+.hero img.logo{width:min(640px,92%);margin:0 auto 1rem;animation:aparecer 1.8s cubic-bezier(.2,.7,.2,1) both}
+@keyframes aparecer{from{opacity:0;transform:scale(.88);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
 .hero h1{font-size:clamp(2.6rem,7vw,5rem)}
 .boton{display:inline-block;margin-top:1.6rem;padding:.85rem 2.2rem;background:var(--rubi);color:#fff;text-decoration:none;font-weight:500;border-radius:2px;transition:background .2s}
 .boton:hover{background:#cf4663}
@@ -48,11 +49,23 @@ h2{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:1.2rem}
 .dos img{border-radius:3px}
 
 /* Roadmap */
-.hitos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:2rem}
-.hito{border-top:2px solid var(--azul);padding-top:.8rem}
-.hito small{color:var(--tenue)}
-.hito h3{font-size:1.5rem;margin-top:.3rem}
-.hito p{font-size:.95rem;color:var(--tenue);margin-top:.6rem;line-height:1.6}
+.ancho{max-width:1200px}
+.cont.ancho h2{text-align:left}
+.hitos{display:grid;grid-template-columns:repeat(6,1fr);margin-top:3.5rem;text-align:center}
+.hito{padding:0 .8rem;position:relative}
+.hito::before{content:"";position:absolute;top:42px;left:-50%;width:100%;height:4px;background:var(--tenue);opacity:.55}
+.hito:first-child::before{display:none}
+.hito:nth-child(2)::before{background:var(--azul);opacity:1}
+.anio{position:relative;z-index:1;display:grid;place-items:center;width:84px;height:84px;margin:0 auto 1.4rem;border:4px solid var(--azul);border-radius:50%;background:var(--noche);font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.15rem}
+.hito h3{font-size:1.3rem;line-height:1.2;margin-bottom:.9rem}
+.hito p{font-size:.92rem;line-height:1.6;color:var(--tenue)}
+@media(max-width:1000px){.hitos{grid-template-columns:repeat(3,1fr);row-gap:3rem}.hito::before{display:none}}
+@media(max-width:600px){.hitos{grid-template-columns:1fr}}
+
+/* Sinopsis */
+.sinopsis{max-width:700px}
+.sinopsis p{margin-bottom:1.3rem}
+.sinopsis .clave{font-family:'Cormorant Garamond',serif;font-size:1.7rem;line-height:1.3;color:var(--azul);border-left:2px solid var(--rubi);padding-left:1.2rem;margin:2rem 0}
 
 /* Formulario */
 form{display:grid;gap:1rem;max-width:460px;margin:1.5rem auto 0;text-align:left}
@@ -66,7 +79,7 @@ footer a{text-decoration:none}
 footer a:hover{color:var(--plata)}
 
 @media(max-width:720px){.dos{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.hero img.logo{animation:none}html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
 <body>
@@ -107,8 +120,19 @@ footer a:hover{color:var(--plata)}
     </div>
   </section>
 
+  <!-- SINOPSIS -->
+  <section class="alt" id="sinopsis">
+    <div class="cont sinopsis">
+      <h2>Sinopsis</h2>
+      <p>Una joven despierta sin recuerdos, acusada de ser un demonio, encerrada en una jaula y arrastrada más allá de los límites de la civilización. Su ojo, marcado por un poder desconocido, la convierte en una pieza codiciada por mercaderes, inquisidores… y criaturas aún más peligrosas.</p>
+      <p class="clave">Pero ella sabe algo que los demás ignoran: no pertenece a ese mundo.</p>
+      <p>Para sobrevivir, deberá dejar atrás su pasado —incluso si no lo recuerda— y abrazar un destino que jamás habría imaginado. Bajo la tutela de Nieth Noclira, la tejedora más poderosa de Aerthea, se adentrará en una red de secretos y traiciones en su camino para convertirse en bruja.</p>
+      <p>Magia, folclore, conspiraciones imperiales y personajes inolvidables se entrelazan en esta historia oscura y emocionante sobre identidad, poder y lo que significa ser humano… incluso cuando el mundo insiste en que no lo eres.</p>
+    </div>
+  </section>
+
   <!-- LECTURA GRATIS -->
-  <section class="alt centro">
+  <section class="centro">
     <div class="cont">
       <h2>Lee el prólogo y los primeros capítulos</h2>
       <p>Atrévete a cruzar el umbral. Adéntrate gratis en el reino de Aerthea y descubre los oscuros secretos que aguardan a Violet.</p>
@@ -117,7 +141,7 @@ footer a:hover{color:var(--plata)}
   </section>
 
   <!-- DISCORD -->
-  <section id="comunidad">
+  <section class="alt" id="comunidad">
     <div class="dos">
       <div>
         <h2>Únete a Aerthea</h2>
@@ -129,22 +153,22 @@ footer a:hover{color:var(--plata)}
   </section>
 
   <!-- ROADMAP -->
-  <section class="alt">
-    <div class="cont centro">
+  <section>
+    <div class="cont ancho">
       <h2>Roadmap</h2>
       <div class="hitos">
-        <div class="hito"><small>2026</small><h3>Brujas de Aerthea<br>El secreto de Violet</h3><p>El proyecto actual.</p></div>
-        <div class="hito"><small>2027</small><h3>Templanza por un gigante</h3><p>Novela corta y autoconclusiva ambientada en Aerthea que sigue las desventuras de Telza, una joven mimada obligada a guiar a sus huestes a través del interior de un gigante.</p></div>
-        <div class="hito"><small>2028</small><h3>Brujas de Aerthea 2<br>La caída de Astrid</h3><p>Continuación de la saga, centrada en el personaje de la Dama y profundizando en los Gremios y otras tejedoras mencionadas en el primer libro.</p></div>
-        <div class="hito"><small>2028</small><h3>Cuentos de Aerthea (artbook)</h3><p>Con ayuda de mi artista, deseamos crear un libro que recopile todas las brujas de la saga. En cada una añadiremos narrativa adicional y varias ilustraciones.</p></div>
-        <div class="hito"><small>2029</small><h3>Brujas de Aerthea 3<br>El plan de Nieth</h3><p>La conclusión de la saga, centrada en el personaje de Nieth y resolviendo la historia y los misterios expuestos en los dos anteriores libros.</p></div>
-        <div class="hito"><small>2030</small><h3>Brujas de Aerthea<br>El juego de rol</h3><p>Con mi conocimiento como diseñador de juego y mi experiencia previa, me gustaría crear e ilustrar un manual de rol inspirado en el mundo de la saga.</p></div>
+        <div class="hito"><span class="anio">2026</span><h3>Brujas de Aerthea<br>El secreto de Violet</h3><p>El proyecto actual.</p></div>
+        <div class="hito"><span class="anio">2027</span><h3>Templanza por un gigante</h3><p>Novela corta y autoconclusiva ambientada en Aerthea que sigue las desventuras de Telza, una joven mimada obligada a guiar a sus huestes a través del interior de un gigante.</p></div>
+        <div class="hito"><span class="anio">2028</span><h3>Brujas de Aerthea 2<br>La caída de Astrid</h3><p>Continuación de la saga, centrada en el personaje de la Dama y profundizando en los Gremios y otras tejedoras mencionadas en el primer libro.</p></div>
+        <div class="hito"><span class="anio">2028</span><h3>Cuentos de Aerthea (artbook)</h3><p>Con ayuda de mi artista, deseamos crear un libro que recopile todas las brujas de la saga. En cada una añadiremos narrativa adicional y varias ilustraciones.</p></div>
+        <div class="hito"><span class="anio">2029</span><h3>Brujas de Aerthea 3<br>El plan de Nieth</h3><p>La conclusión de la saga, centrada en el personaje de Nieth y resolviendo la historia y los misterios expuestos en los dos anteriores libros.</p></div>
+        <div class="hito"><span class="anio">2030</span><h3>Brujas de Aerthea<br>El juego de rol</h3><p>Con mi conocimiento como diseñador de juego y mi experiencia previa, me gustaría crear e ilustrar un manual de rol inspirado en el mundo de la saga.</p></div>
       </div>
     </div>
   </section>
 
   <!-- SUSCRIPCIÓN -->
-  <section class="centro">
+  <section class="alt centro">
     <div class="cont">
       <h2>Únete a la comunidad</h2>
       <p>Recibe actualizaciones sobre el universo de Brujas de Aerthea, secretos de Violet y noticias directas de nuestra comunidad.</p>
@@ -158,7 +182,7 @@ footer a:hover{color:var(--plata)}
   </section>
 
   <!-- CIERRE -->
-  <section class="alt centro">
+  <section class="centro">
     <div class="cont">
       <h2>El secreto de Violet</h2>
       <p>Un universo de misterio y poder en Aerthea. Descubre la historia de las Brujas que guardan los secretos más oscuros de la tierra, donde cada hechizo es una prueba de fe y cada sombra un refugio para el alma.</p>
