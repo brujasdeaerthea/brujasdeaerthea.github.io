@@ -61,12 +61,10 @@ nav a:hover{color:var(--plata)}
 .hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:4rem 1.2rem;
   background:linear-gradient(rgba(11,18,32,.55),var(--noche)),url("img/portada-bosque.jpg") center/cover,var(--bruma)}
 .logo-brillo{position:relative;isolation:isolate;width:min(640px,92%);margin:0 auto 1rem;animation:aparecer 1.8s cubic-bezier(.2,.7,.2,1) both}
-.hero img.logo{width:100%;margin:0;animation:respirar 5s ease-in-out infinite}
-/* Resplandor suave que "respira" alrededor de las letras */
-@keyframes respirar{
-  0%,100%{filter:brightness(.88) drop-shadow(0 0 5px rgba(143,208,255,.25)) drop-shadow(0 0 16px rgba(95,168,211,.2))}
-  50%{filter:brightness(.92) drop-shadow(0 0 9px rgba(143,208,255,.55)) drop-shadow(0 0 28px rgba(95,168,211,.38))}
-}
+.hero img.logo{width:100%;margin:0;filter:brightness(.9) drop-shadow(0 0 7px rgba(143,208,255,.35)) drop-shadow(0 0 20px rgba(95,168,211,.25))}
+/* Resplandor que "respira": solo se anima la opacidad de una capa ya difuminada (no repinta cada fotograma) */
+.logo-brillo::before{content:"";position:absolute;inset:0;z-index:-1;background:url("img/logo.png") center/contain no-repeat;filter:blur(14px);opacity:.3;will-change:opacity;animation:respirar 5s ease-in-out infinite}
+@keyframes respirar{0%,100%{opacity:.22}50%{opacity:.6}}
 /* Luz que recorre solo la luna: un haz que gira por su curva (las máscaras excluyen las letras) */
 .luz{position:absolute;inset:0;pointer-events:none;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain}
@@ -75,6 +73,7 @@ nav a:hover{color:var(--plata)}
 .luz-halo i{background:conic-gradient(from 0deg,transparent 0deg,rgba(143,208,255,.85) 44deg,transparent 56deg)}
 .luz-luna{-webkit-mask-image:url("img/luna-mascara.png");mask-image:url("img/luna-mascara.png")}
 .luz-luna i{background:conic-gradient(from 0deg,transparent 0deg,rgba(255,255,255,.95) 28deg,transparent 34deg)}
+.hero-pausa .luz i,.hero-pausa .logo-brillo::before{animation-play-state:paused}
 @keyframes giro{0%{transform:rotate(-70deg);opacity:0}6%{opacity:1}52%{transform:rotate(330deg);opacity:1}58%{opacity:0}100%{transform:rotate(330deg);opacity:0}}
 @keyframes aparecer{from{opacity:0;transform:scale(.88);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
 .hero h1{font-size:clamp(2.6rem,7vw,5rem)}
@@ -142,7 +141,7 @@ footer a:hover{color:var(--plata)}
 @media(prefers-reduced-motion:reduce){#magia{display:none}}
 
 @media(max-width:720px){.dos{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){.logo-brillo{animation:none}.hero img.logo{animation:none;filter:drop-shadow(0 0 8px rgba(143,208,255,.3))}.luz{display:none}html{scroll-behavior:auto}*{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.logo-brillo{animation:none}.logo-brillo::before{animation:none;opacity:.35}.luz{display:none}html{scroll-behavior:auto}*{transition:none!important}}
 
 
   @font-face {
@@ -237,7 +236,7 @@ footer a:hover{color:var(--plata)}
   <!-- POR QUÉ LEER -->
   <section>
     <div class="dos">
-      <img src="img/violet.jpg" alt="Ilustración de la saga Brujas de Aerthea">
+      <img src="img/violet.jpg" loading="lazy" decoding="async" alt="Ilustración de la saga Brujas de Aerthea">
       <div>
         <h2>¿Por qué leer esta saga?</h2>
         <ul class="lista">
@@ -287,7 +286,7 @@ footer a:hover{color:var(--plata)}
         <p>Únete a nuestra comunidad en Discord para descubrir secretos de Violet, compartir teorías sobre el reino de Aerthea y participar en eventos exclusivos. El universo se expande, y tú eres parte de él.</p>
         <a class="boton claro" href="https://discord.gg/TU-INVITACION" target="_blank" rel="noopener">Entrar a Discord</a>
       </div>
-      <img src="img/comunidad.jpg" alt="Ilustración de la comunidad de Aerthea">
+      <img src="img/comunidad.jpg" loading="lazy" decoding="async" alt="Ilustración de la comunidad de Aerthea">
     </div>
   </section> -->
 
@@ -705,5 +704,10 @@ footer a:hover{color:var(--plata)}
 })();
 </script>
 
+<script>
+/* Rendimiento: pausa el resplandor y el haz cuando la portada queda fuera de pantalla */
+(function(){var h=document.querySelector('.hero');if(!h||!('IntersectionObserver' in window))return;
+new IntersectionObserver(function(e){h.classList.toggle('hero-pausa',!e[0].isIntersecting)},{threshold:0}).observe(h);})();
+</script>
 </body>
 </html>
