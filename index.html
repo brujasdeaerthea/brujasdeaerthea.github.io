@@ -587,7 +587,7 @@ footer a:hover{color:var(--plata)}
    Para apagar algo, pon false en MAGIA. Se desactiva solo si la persona
    tiene activada la opción "reducir movimiento" en su dispositivo. */
 (function(){
-  var MAGIA={motas:true,rastro:true};
+  var MAGIA={motas:true,rastro:false};
   if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   var c=document.getElementById('magia');
   if(!c||!c.getContext)return;
