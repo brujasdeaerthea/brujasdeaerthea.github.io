@@ -21,7 +21,8 @@ a{color:var(--azul)}
 :focus-visible{outline:2px solid var(--azul);outline-offset:3px}
 header{border-bottom:1px solid var(--bruma);background:rgba(11,18,32,.92)}
 header nav{max-width:900px;margin:auto;padding:.8rem 1.2rem}
-header a{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;text-decoration:none;color:var(--plata)}
+header a{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;text-decoration:none;color:var(--plata);display:inline-flex;align-items:center;gap:.6rem}
+header a img{height:38px;width:auto}
 main{max-width:760px;margin:auto;padding:3.5rem 1.2rem 4rem}
 h1{font-size:clamp(2.2rem,6vw,3.2rem);margin-bottom:.4rem}
 .fecha{color:var(--tenue);font-size:.9rem;margin-bottom:2rem}
@@ -37,7 +38,7 @@ footer a:hover{color:var(--plata)}
 </style>
 </head>
 <body>
-<header><nav><a href="index.html">Brujas de Aerthea</a></nav></header>
+<header><nav><a href="index.html"><img src="img/headlogo.jpg" alt="" height="38">Brujas de Aerthea</a></nav></header>
 
 <main>
   <h1>Política de privacidad y cookies</h1>
@@ -46,7 +47,7 @@ footer a:hover{color:var(--plata)}
   <h2>1. Responsable del tratamiento</h2>
   <ul>
     <li><strong>Responsable:</strong> Ángel Hache (seudónimo), autor a título particular.</li>
-    <li><strong>Dirección de contacto:</strong> Calle Nueva Peña Parda, 83, 18690 Almuñécar (Granada).</li>
+    <li><strong>Dirección de contacto:</strong> Calle Nueva Peña Parda, 83, <mark class="falta">18690</mark> Almuñécar (Granada).</li>
     <li><strong>Correo electrónico:</strong> <a href="mailto:info@brujasdeaerthea.com">info@brujasdeaerthea.com</a></li>
   </ul>
 
