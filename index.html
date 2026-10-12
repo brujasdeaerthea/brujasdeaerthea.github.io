@@ -77,6 +77,12 @@ nav a:hover{color:var(--plata)}
 @keyframes giro{0%{transform:rotate(-70deg);opacity:0}6%{opacity:1}52%{transform:rotate(330deg);opacity:1}58%{opacity:0}100%{transform:rotate(330deg);opacity:0}}
 @keyframes aparecer{from{opacity:0;transform:scale(.88);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
 .hero h1{font-size:clamp(2.6rem,7vw,5rem)}
+/* Título: las letras emergen una a una  */
+.hero h1 .pal{display:inline-block;white-space:nowrap}
+.hero h1 .pal>span{display:inline-block;animation:letra 1s cubic-bezier(.2,.7,.2,1) calc(1s + var(--i)*.07s) both}
+.hero .boton{animation:entrar 1.2s ease-out 2.8s both}
+@keyframes letra{from{opacity:0;transform:translateY(.45em) scale(.92);filter:blur(7px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes entrar{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .boton{display:inline-block;margin-top:1.6rem;padding:.85rem 2.2rem;background:var(--rubi);color:#fff;text-decoration:none;font-weight:500;border-radius:2px;transition:background .2s}
 .boton:hover{background:#cf4663}
 .boton.claro{background:transparent;border:1px solid var(--azul);color:var(--azul)}
@@ -141,7 +147,7 @@ footer a:hover{color:var(--plata)}
 @media(prefers-reduced-motion:reduce){#magia{display:none}}
 
 @media(max-width:720px){.dos{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){.logo-brillo{animation:none}.logo-brillo::before{animation:none;opacity:.35}.luz{display:none}html{scroll-behavior:auto}*{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.logo-brillo{animation:none}.logo-brillo::before{animation:none;opacity:.35}.luz{display:none}.hero h1 .pal>span,.hero .boton{animation:none}html{scroll-behavior:auto}*{transition:none!important}}
 
 
   @font-face {
@@ -228,7 +234,7 @@ footer a:hover{color:var(--plata)}
   <div class="hero">
     <div>
       <div class="logo-brillo"><span class="luz luz-halo" aria-hidden="true"><i></i></span><img class="logo" src="img/logo.png" alt="Logo de Brujas de Aerthea con forma de luna creciente"><span class="luz luz-luna" aria-hidden="true"><i></i></span></div>
-      <h1>El Secreto de Violet</h1>
+      <h1 aria-label="El Secreto de Violet"><span class="pal" aria-hidden="true"><span style="--i:0">E</span><span style="--i:1">l</span></span> <span class="pal" aria-hidden="true"><span style="--i:3">S</span><span style="--i:4">e</span><span style="--i:5">c</span><span style="--i:6">r</span><span style="--i:7">e</span><span style="--i:8">t</span><span style="--i:9">o</span></span> <span class="pal" aria-hidden="true"><span style="--i:11">d</span><span style="--i:12">e</span></span> <span class="pal" aria-hidden="true"><span style="--i:14">V</span><span style="--i:15">i</span><span style="--i:16">o</span><span style="--i:17">l</span><span style="--i:18">e</span><span style="--i:19">t</span></span></h1>
       <span class="boton deshabilitado">Próximamente</span>
     </div>
   </div>
