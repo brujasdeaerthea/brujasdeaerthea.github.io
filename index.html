@@ -61,10 +61,7 @@ nav a:hover{color:var(--plata)}
 .hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:4rem 1.2rem;
   background:linear-gradient(rgba(11,18,32,.55),var(--noche)),url("img/portada-bosque.jpg") center/cover,var(--bruma)}
 .logo-brillo{position:relative;isolation:isolate;width:min(640px,92%);margin:0 auto 1rem;animation:aparecer 1.8s cubic-bezier(.2,.7,.2,1) both}
-.hero img.logo{width:100%;margin:0;filter:brightness(.9) drop-shadow(0 0 7px rgba(143,208,255,.35)) drop-shadow(0 0 20px rgba(95,168,211,.25))}
-/* Resplandor que "respira": solo se anima la opacidad de una capa ya difuminada (no repinta cada fotograma) */
-.logo-brillo::before{content:"";position:absolute;inset:0;z-index:-1;background:url("img/logo.png") center/contain no-repeat;filter:blur(14px);opacity:.3;will-change:opacity;animation:respirar 5s ease-in-out infinite}
-@keyframes respirar{0%,100%{opacity:.22}50%{opacity:.6}}
+.hero img.logo{width:100%;margin:0;filter:brightness(.92)}
 /* Luz que recorre solo la luna: un haz que gira por su curva (las máscaras excluyen las letras) */
 .luz{position:absolute;inset:0;pointer-events:none;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain}
@@ -73,7 +70,7 @@ nav a:hover{color:var(--plata)}
 .luz-halo i{background:conic-gradient(from 0deg,transparent 0deg,rgba(143,208,255,.85) 44deg,transparent 56deg)}
 .luz-luna{-webkit-mask-image:url("img/luna-mascara.png");mask-image:url("img/luna-mascara.png")}
 .luz-luna i{background:conic-gradient(from 0deg,transparent 0deg,rgba(255,255,255,.95) 28deg,transparent 34deg)}
-.hero-pausa .luz i,.hero-pausa .logo-brillo::before{animation-play-state:paused}
+.hero-pausa .luz i{animation-play-state:paused}
 @keyframes giro{0%{transform:rotate(-70deg);opacity:0}6%{opacity:1}52%{transform:rotate(330deg);opacity:1}58%{opacity:0}100%{transform:rotate(330deg);opacity:0}}
 @keyframes aparecer{from{opacity:0;transform:scale(.88);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
 .hero h1{font-size:clamp(2.6rem,7vw,5rem)}
@@ -147,7 +144,7 @@ footer a:hover{color:var(--plata)}
 @media(prefers-reduced-motion:reduce){#magia{display:none}}
 
 @media(max-width:720px){.dos{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){.logo-brillo{animation:none}.logo-brillo::before{animation:none;opacity:.35}.luz{display:none}.hero h1 .pal>span,.hero .boton{animation:none}html{scroll-behavior:auto}*{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.logo-brillo{animation:none}.luz{display:none}.hero h1 .pal>span,.hero .boton{animation:none}html{scroll-behavior:auto}*{transition:none!important}}
 
 
   @font-face {
@@ -303,7 +300,7 @@ footer a:hover{color:var(--plata)}
       <div class="hitos">
         <div class="hito"><span class="anio">2026</span><h3>Brujas de Aerthea<br>El secreto de Violet</h3><p>El proyecto actual.</p></div>
         <div class="hito"><span class="anio">2027</span><h3>Templanza por un gigante</h3><p>Un spin-off de Aerthea donde Telza luchará por liderar a sus huestes a través del cuerpo de un gigante.</p></div>
-        <div class="hito"><span class="anio pronto">Próximamente</span><h3>Brujas de Aerthea 2<br>La caída de Astrid</h3><p>Continuación de la saga, centrada en el personaje de la Dama.</p></div>
+        <div class="hito"><span class="anio">2029</span><h3>Brujas de Aerthea 2<br>La caída de Astrid</h3><p>Continuación de la saga, centrada en el personaje de la Dama.</p></div>
         <div class="hito"><span class="anio pronto">Próximamente</span><h3>Cuentos de Aerthea (artbook)</h3><p>Con ayuda de mi artista, deseamos crear un libro de ilustraciones de todas las brujas.</p></div>
         <div class="hito"><span class="anio pronto">Próximamente</span><h3>Brujas de Aerthea 3<br>El plan de Nieth</h3><p>La conclusión de la saga, centrada en el personaje de Nieth.</p></div>
         <div class="hito"><span class="anio pronto">Próximamente</span><h3>Brujas de Aerthea<br>El juego de rol</h3><p>Con mi experiencia como diseñador de juego, me gustaría crear e ilustrar un manual de rol inspirado en el mundo de la saga.</p></div>
