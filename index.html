@@ -133,6 +133,10 @@ button.boton{border:0;cursor:pointer;font:inherit;margin-top:.4rem}
 .consentimiento label{display:flex;gap:.7rem;align-items:flex-start;text-align:left;font-family:Georgia,serif;font-size:.9rem;line-height:1.5;color:#fff;cursor:pointer}
 .consentimiento input[type="checkbox"]{width:1.15rem;height:1.15rem;flex:0 0 auto;padding:0;margin-top:.2rem;accent-color:var(--rubi)}
 .consentimiento a{color:var(--azul)}
+/* Texto de los campos de la newsletter en negro (el fondo del campo es blanco) */
+#sib-container .entry__field .input{color:#111;background:transparent;caret-color:#111}
+#sib-container .entry__field .input:-webkit-autofill{-webkit-text-fill-color:#111}
+.consentimiento .consent-error{color:#ff8fa3;font-family:Georgia,serif;font-size:.85rem;margin:.5rem 0 0;text-align:left}
 
 footer{padding:3rem 1.2rem;text-align:center;color:var(--tenue);font-size:.9rem;border-top:1px solid var(--bruma)}
 footer .redes{display:flex;justify-content:center;gap:1.4rem;margin-bottom:1rem;flex-wrap:wrap}
@@ -577,6 +581,40 @@ footer a:hover{color:var(--plata)}
 <!-- END - We recommend to place the above code in footer or bottom of your website html  -->
 
 <!-- End Brevo Form -->
+
+<!-- Política de privacidad obligatoria: Brevo desactiva la validación nativa del formulario,
+     así que bloqueamos el envío si la casilla no está marcada -->
+<script>
+(function(){
+  var MSG = 'Debes aceptar la política de privacidad para suscribirte.';
+  var form = document.getElementById('sib-form');
+  var cb = document.getElementById('CONSENTIMIENTO');
+  if (!form || !cb) return;
+  var err = document.createElement('p');
+  err.className = 'consent-error';
+  err.setAttribute('role', 'alert');
+  err.textContent = MSG;
+  err.hidden = true;
+  cb.closest('.consentimiento').appendChild(err);
+  function comprobar(e){
+    var t = e.target, esNuestro;
+    if (e.type === 'submit') { esNuestro = (t === form); }
+    else { var b = t.closest && t.closest('button[type="submit"]'); esNuestro = !!b && form.contains(b); }
+    if (!esNuestro || cb.checked) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    err.hidden = false;
+    cb.setCustomValidity(MSG);
+    cb.reportValidity();
+    cb.focus();
+  }
+  document.addEventListener('click', comprobar, true);
+  document.addEventListener('submit', comprobar, true);
+  cb.addEventListener('change', function(){
+    if (cb.checked) { err.hidden = true; cb.setCustomValidity(''); }
+  });
+})();
+</script>
 
   <!-- CIERRE 
   <section class="centro">
