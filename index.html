@@ -2,13 +2,763 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Brujas de Aerthea</title>
-<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brujas de Aerthea | El Secreto de Violet</title>
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="description" content="Fantasía oscura: lee gratis el prólogo y los primeros capítulos de El Secreto de Violet.">
 <link rel="canonical" href="https://brujasdeaerthea.com/">
-<meta http-equiv="refresh" content="0; url=/?utm_source=instagram">
-<script>location.replace('/?utm_source=instagram');</script>
+
+<!-- Compartir en redes (Open Graph / Twitter) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Brujas de Aerthea">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://brujasdeaerthea.com/">
+<meta property="og:title" content="Brujas de Aerthea | El Secreto de Violet">
+<meta property="og:description" content="Fantasía oscura: lee gratis el prólogo y los primeros capítulos de El Secreto de Violet.">
+<meta property="og:image" content="https://brujasdeaerthea.com/img/portada-bosque.jpg">
+<meta property="og:image:alt" content="Portada de Brujas de Aerthea: El Secreto de Violet">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brujas de Aerthea | El Secreto de Violet">
+<meta name="twitter:description" content="Fantasía oscura: lee gratis el prólogo y los primeros capítulos de El Secreto de Violet.">
+<meta name="twitter:image" content="https://brujasdeaerthea.com/img/portada-bosque.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--noche:#0b1220;--bruma:#16223a;--azul:#5fa8d3;--plata:#d9e2ee;--tenue:#8fa0b8;--rubi:#b3364f}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--noche);color:var(--plata);font-family:'Lora',Georgia,serif;line-height:1.75;font-size:1.05rem}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;line-height:1.15}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--azul);outline-offset:3px}
+
+/* Menú */
+header{position:sticky;top:0;z-index:10;background:rgba(11,18,32,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--bruma)}
+nav{max-width:1100px;margin:auto;padding:.8rem 1.2rem;display:flex;gap:1.6rem;align-items:center;justify-content:space-between}
+nav .marca{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;margin-right:auto;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;color:var(--plata)}
+nav .marca img{height:40px;width:auto}
+nav a{text-decoration:none;color:var(--tenue)}
+nav a:hover{color:var(--plata)}
+.menu{display:flex;gap:1.6rem;list-style:none}
+.menu-btn{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:44px;height:44px;background:transparent;border:1px solid var(--tenue);border-radius:3px;cursor:pointer}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--plata);border-radius:2px;transition:transform .25s,opacity .2s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:720px){
+  .menu-btn{display:flex}
+  .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--noche);border-bottom:1px solid var(--bruma);box-shadow:0 12px 24px rgba(0,0,0,.4)}
+  .menu.abierto{display:flex}
+  .menu a{display:block;padding:1rem 1.4rem;border-top:1px solid var(--bruma);font-size:1.05rem}
+  .menu a:hover{background:var(--bruma)}
+}
+
+/* Portada */
+.hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:4rem 1.2rem;
+  background:linear-gradient(rgba(11,18,32,.55),var(--noche)),url("img/portada-bosque.jpg") center/cover,var(--bruma)}
+.logo-brillo{position:relative;isolation:isolate;width:min(640px,92%);margin:0 auto 1rem;animation:aparecer 1.8s cubic-bezier(.2,.7,.2,1) both}
+.hero img.logo{width:100%;margin:0;filter:brightness(.92)}
+/* Luz que recorre solo la luna: un haz que gira por su curva (las máscaras excluyen las letras) */
+.luz{position:absolute;inset:0;pointer-events:none;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain}
+.luz i{position:absolute;width:142%;height:142%;left:-21%;top:-21%;opacity:0;animation:giro 7s ease-in-out 2.2s infinite}
+.luz-halo{inset:-10%;z-index:-1;-webkit-mask-image:url("img/luna-halo.png");mask-image:url("img/luna-halo.png")}
+.luz-halo i{background:conic-gradient(from 0deg,transparent 0deg,rgba(143,208,255,.85) 44deg,transparent 56deg)}
+.luz-luna{-webkit-mask-image:url("img/luna-mascara.png");mask-image:url("img/luna-mascara.png")}
+.luz-luna i{background:conic-gradient(from 0deg,transparent 0deg,rgba(255,255,255,.95) 28deg,transparent 34deg)}
+.hero-pausa .luz i{animation-play-state:paused}
+@keyframes giro{0%{transform:rotate(-70deg);opacity:0}6%{opacity:1}52%{transform:rotate(330deg);opacity:1}58%{opacity:0}100%{transform:rotate(330deg);opacity:0}}
+@keyframes aparecer{from{opacity:0;transform:scale(.88);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+.hero h1{font-size:clamp(2.6rem,7vw,5rem)}
+/* Título: las letras emergen una a una  */
+.hero h1 .pal{display:inline-block;white-space:nowrap}
+.hero h1 .pal>span{display:inline-block;animation:letra 1s cubic-bezier(.2,.7,.2,1) calc(1s + var(--i)*.07s) both}
+.hero .boton{animation:entrar 1.2s ease-out 2.8s both}
+@keyframes letra{from{opacity:0;transform:translateY(.45em) scale(.92);filter:blur(7px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes entrar{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.boton{display:inline-block;margin-top:1.6rem;padding:.85rem 2.2rem;background:var(--rubi);color:#fff;text-decoration:none;font-weight:500;border-radius:2px;transition:background .2s}
+.boton:hover{background:#cf4663}
+.boton.claro{background:transparent;border:1px solid var(--azul);color:var(--azul)}
+.boton.claro:hover{background:var(--azul);color:var(--noche)}
+.boton.deshabilitado,.boton.deshabilitado:hover{background:transparent;border:1px dashed var(--tenue);color:var(--tenue);cursor:default;user-select:none}
+
+/* Secciones */
+section{padding:5rem 1.2rem}
+.cont{max-width:900px;margin:auto}
+.centro{text-align:center}
+h2{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:1.2rem}
+.lista{list-style:none;margin:1.5rem 0}
+.lista li{padding:.55rem 0 .55rem 1.6rem;position:relative}
+.lista li::before{content:"☾";position:absolute;left:0;color:var(--azul)}
+.alt{background:var(--bruma)}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;max-width:1000px;margin:auto}
+.dos img{border-radius:3px}
+
+/* Roadmap */
+.ancho{max-width:1200px}
+.cont.ancho h2{text-align:left}
+.hitos{display:grid;grid-template-columns:repeat(6,1fr);margin-top:3.5rem;text-align:center}
+.hito{padding:0 .8rem;position:relative}
+.hito::before{content:"";position:absolute;top:42px;left:-50%;width:100%;height:4px;background:var(--tenue);opacity:.55}
+.hito:first-child::before{display:none}
+.hito:nth-child(2)::before{background:var(--azul);opacity:1}
+.anio{position:relative;z-index:1;display:grid;place-items:center;width:84px;height:84px;margin:0 auto 1.4rem;border:4px solid var(--azul);border-radius:50%;background:var(--noche);font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.15rem}
+.anio.pronto{border-style:dashed;border-color:var(--tenue);font-size:.75rem;letter-spacing:.02em;color:var(--tenue)}
+.hito h3{font-size:1.3rem;line-height:1.2;margin-bottom:.9rem}
+.hito p{font-size:.92rem;line-height:1.6;color:var(--tenue)}
+@media(max-width:1000px){.hitos{grid-template-columns:repeat(3,1fr);row-gap:3rem}.hito::before{display:none}}
+@media(max-width:600px){.hitos{grid-template-columns:1fr}}
+
+/* Cita de lector */
+.cita{padding:0 1.2rem 5rem}
+.cita figure{max-width:760px;margin:auto;text-align:center}
+.cita blockquote{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.3;color:var(--azul)}
+.cita blockquote::before{content:"☾";display:block;font-size:1.4rem;color:var(--rubi);margin-bottom:.8rem}
+.cita figcaption{margin-top:1rem;font-size:.95rem;color:var(--tenue)}
+
+/* Sinopsis */
+.sinopsis{max-width:700px}
+.sinopsis p{margin-bottom:1.3rem}
+.sinopsis .clave{font-family:'Cormorant Garamond',serif;font-size:1.7rem;line-height:1.3;color:var(--azul);border-left:2px solid var(--rubi);padding-left:1.2rem;margin:2rem 0}
+
+/* Formulario */
+form{display:grid;gap:1rem;max-width:460px;margin:1.5rem auto 0;text-align:left}
+label{font-size:.9rem;color:var(--tenue)}
+input{width:100%;padding:.75rem;background:var(--noche);border:1px solid var(--tenue);color:var(--plata);font:inherit;border-radius:2px}
+button.boton{border:0;cursor:pointer;font:inherit;margin-top:.4rem}
+.consentimiento label{display:flex;gap:.7rem;align-items:flex-start;text-align:left;font-family:Georgia,serif;font-size:.9rem;line-height:1.5;color:#fff;cursor:pointer}
+.consentimiento input[type="checkbox"]{width:1.15rem;height:1.15rem;flex:0 0 auto;padding:0;margin-top:.2rem;accent-color:var(--rubi)}
+.consentimiento a{color:var(--azul)}
+/* Texto de los campos de la newsletter en negro (el fondo del campo es blanco) */
+#sib-container .entry__field .input{color:#111;background:transparent;caret-color:#111}
+#sib-container .entry__field .input:-webkit-autofill{-webkit-text-fill-color:#111}
+.consentimiento .consent-error{color:#ff8fa3;font-family:Georgia,serif;font-size:.85rem;margin:.5rem 0 0;text-align:left}
+
+footer{padding:3rem 1.2rem;text-align:center;color:var(--tenue);font-size:.9rem;border-top:1px solid var(--bruma)}
+footer .redes{display:flex;justify-content:center;gap:1.4rem;margin-bottom:1rem;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--plata)}
+
+/* Ambiente mágico: motas y rastro */
+#magia{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9}
+@media(prefers-reduced-motion:reduce){#magia{display:none}}
+
+@media(max-width:720px){.dos{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.logo-brillo{animation:none}.luz{display:none}.hero h1 .pal>span,.hero .boton{animation:none}html{scroll-behavior:auto}*{transition:none!important}}
+
+
+  @font-face {
+    font-display: block;
+    font-family: Roboto;
+    src: url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/7529907e9eaf8ebb5220c5f9850e3811.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/25c678feafdc175a70922a116c9be3e7.woff) format("woff")
+  }
+
+  @font-face {
+    font-display: fallback;
+    font-family: Roboto;
+    font-weight: 600;
+    src: url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/6e9caeeafb1f3491be3e32744bc30440.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/71501f0d8d5aa95960f6475d5487d4c2.woff) format("woff")
+  }
+
+  @font-face {
+    font-display: fallback;
+    font-family: Roboto;
+    font-weight: 700;
+    src: url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/3ef7cf158f310cf752d5ad08cd0e7e60.woff2) format("woff2"), url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/ece3a1d82f18b60bcce0211725c476aa.woff) format("woff")
+  }
+
+  :where(.sib-form-message-panel) {
+    display: none;
+  }
+
+  :where(.sib-form-message-panel .sib-notification__icon) {
+    width: 20px;
+    height: 20px;
+  }
+
+
+  #sib-container input:-ms-input-placeholder {
+    font-family: Helvetica, sans-serif;
+    text-align: left;
+    color: #c0ccda;
+  }
+
+  #sib-container input::placeholder {
+    font-family: Helvetica, sans-serif;
+    text-align: left;
+    color: #c0ccda;
+  }
+
+  #sib-container textarea::placeholder {
+    font-family: Helvetica, sans-serif;
+    text-align: left;
+    color: #c0ccda;
+  }
+
+
+  #sib-container a {
+    text-decoration: underline;
+    color: #2BB2FC;
+  }
+</style>
+<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+
+
+<!--  END - We recommend to place the above code in head tag of your website html -->
+</style>
+<!-- Analítica sin cookies (GoatCounter). Cambia "brujasdeaerthea" si tu cuenta tiene otro nombre. -->
+<script data-goatcounter="https://brujasdeaerthea.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
-<body style="background:#0b1220;color:#e7f4fe;font-family:Georgia,serif;text-align:center;padding:3rem">
-<p><a href="/?utm_source=instagram" style="color:#5fa8d3">Entrar en Aerthea</a></p>
+<body>
+
+<canvas id="magia" aria-hidden="true"></canvas>
+
+<header>
+  <nav>
+    <a class="marca" href="index.html"><img src="img/logo.png" alt="" height="40">Brujas de Aerthea</a>
+    <button class="menu-btn" id="menu-btn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="menu" id="menu">
+      <li><a href="#sinopsis">Sinopsis</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#comunidad">Leer muestra</a></li>
+      <li><a href="https://www.instagram.com/brujasdeaerthea" target="_blank" rel="noopener">¡Síguenos!</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- PORTADA -->
+  <div class="hero">
+    <div>
+      <div class="logo-brillo"><span class="luz luz-halo" aria-hidden="true"><i></i></span><img class="logo" src="img/logo.png" alt="Logo de Brujas de Aerthea con forma de luna creciente"><span class="luz luz-luna" aria-hidden="true"><i></i></span></div>
+      <h1 aria-label="El Secreto de Violet"><span class="pal" aria-hidden="true"><span style="--i:0">E</span><span style="--i:1">l</span></span> <span class="pal" aria-hidden="true"><span style="--i:3">S</span><span style="--i:4">e</span><span style="--i:5">c</span><span style="--i:6">r</span><span style="--i:7">e</span><span style="--i:8">t</span><span style="--i:9">o</span></span> <span class="pal" aria-hidden="true"><span style="--i:11">d</span><span style="--i:12">e</span></span> <span class="pal" aria-hidden="true"><span style="--i:14">V</span><span style="--i:15">i</span><span style="--i:16">o</span><span style="--i:17">l</span><span style="--i:18">e</span><span style="--i:19">t</span></span></h1>
+      <span class="boton deshabilitado">Próximamente</span>
+    </div>
+  </div>
+
+  <!-- POR QUÉ LEER -->
+  <section>
+    <div class="dos">
+      <img src="img/violet.jpg" loading="lazy" decoding="async" alt="Ilustración de la saga Brujas de Aerthea">
+      <div>
+        <h2>¿Por qué leer esta saga?</h2>
+        <ul class="lista">
+          <li>Fantasía con tintes oscuros</li>
+          <li>Romance, traición y poder en un mundo impío</li>
+          <li>Protagonista contemporánea en un mundo medieval</li>
+          <li>Narrativa coral alrededor de la trama principal</li>
+        </ul>
+        <p>Ideal para lectores de fantasía oscura con sensibilidad emocional, narrativa madura y gusto por personajes rotos o ambiguos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CITA DE LECTOR -->
+  <section class="cita">
+    <figure>
+      <blockquote><p>“Encantador y mágico, es como leer a Laura Gallego pero con palabrotas.”</p></blockquote>
+      <figcaption>— Beta reader de Brujas de Aerthea</figcaption>
+    </figure>
+  </section>
+
+  <!-- SINOPSIS -->
+  <section class="alt" id="sinopsis">
+    <div class="cont sinopsis">
+      <h2>Sinopsis</h2>
+      <p>Una joven despierta sin recuerdos, acusada de ser un demonio, encerrada en una jaula y arrastrada más allá de los límites de la civilización. Su ojo, marcado por un poder desconocido, la convierte en una pieza codiciada por mercaderes, inquisidores… y criaturas aún más peligrosas.</p>
+      <p class="clave">Pero ella sabe algo que los demás ignoran: no pertenece a ese mundo.</p>
+      <p>Para sobrevivir, deberá dejar atrás su pasado —incluso si no lo recuerda— y abrazar un destino que jamás habría imaginado. Bajo la tutela de Nieth Noclira, la tejedora más poderosa de Aerthea, se adentrará en una red de secretos y traiciones en su camino para convertirse en bruja.</p>
+      <p>Magia, folclore, conspiraciones imperiales y personajes inolvidables se entrelazan en esta historia oscura y emocionante sobre identidad, poder y lo que significa ser humano… incluso cuando el mundo insiste en que no lo eres.</p>
+    </div>
+  </section>
+
+<!-- LECTURA GRATIS -->
+ <section class="centro">
+   <div class="cont">
+     <h2>Lee el prólogo y los primeros capítulos</h2>
+     <p>Atrévete a cruzar el umbral. Suscríbete a la newsletter y recibe gratis el prólogo y los primeros capítulos para adentrarte en el reino de Aerthea y descubrir los oscuros secretos que aguardan a Violet.</p>
+     <a class="boton" href="#comunidad">Suscríbete a la newsletter</a>
+   </div>
+ </section>
+
+  <!-- DISCORD
+  <section class="alt">
+    <div class="dos">
+      <div>
+        <h2>Únete a Aerthea</h2>
+        <p>Únete a nuestra comunidad en Discord para descubrir secretos de Violet, compartir teorías sobre el reino de Aerthea y participar en eventos exclusivos. El universo se expande, y tú eres parte de él.</p>
+        <a class="boton claro" href="https://discord.gg/TU-INVITACION" target="_blank" rel="noopener">Entrar a Discord</a>
+      </div>
+      <img src="img/comunidad.jpg" loading="lazy" decoding="async" alt="Ilustración de la comunidad de Aerthea">
+    </div>
+  </section> -->
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="cont ancho">
+      <h2>Roadmap</h2>
+      <div class="hitos">
+        <div class="hito"><span class="anio">2026</span><h3>Brujas de Aerthea<br>El secreto de Violet</h3><p>El proyecto actual.</p></div>
+        <div class="hito"><span class="anio">2027</span><h3>Templanza por un gigante</h3><p>Un spin-off de Aerthea donde Telza luchará por liderar a sus huestes a través del cuerpo de un gigante.</p></div>
+        <div class="hito"><span class="anio">2029</span><h3>Brujas de Aerthea 2<br>La caída de Astrid</h3><p>Continuación de la saga, centrada en el personaje de la Dama.</p></div>
+        <div class="hito"><span class="anio pronto">Próximamente</span><h3>Cuentos de Aerthea (artbook)</h3><p>Con ayuda de mi artista, deseamos crear un libro de ilustraciones de todas las brujas.</p></div>
+        <div class="hito"><span class="anio pronto">Próximamente</span><h3>Brujas de Aerthea 3<br>El plan de Nieth</h3><p>La conclusión de la saga, centrada en el personaje de Nieth.</p></div>
+        <div class="hito"><span class="anio pronto">Próximamente</span><h3>Brujas de Aerthea<br>El juego de rol</h3><p>Con mi experiencia como diseñador de juego, me gustaría crear e ilustrar un manual de rol inspirado en el mundo de la saga.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUSCRIPCIÓN -->
+
+  <section class="alt centro"  id="comunidad">
+    <div class="cont">
+      <h2>Suscríbete a la newsletter</h2>
+      <p>Gratis: el prólogo y los primeros capítulos de El Secreto de Violet, y primicias de Aerthea antes que nadie.</p>
+      <!-- Sustituye TU_ID por el de tu formulario de formspree.io
+      <form action="https://formspree.io/f/TU_ID" method="POST">
+        <div><label for="nombre">Nombre *</label><input id="nombre" name="nombre" required></div>
+        <div><label for="correo">Correo electrónico *</label><input id="correo" name="email" type="email" required></div>
+        <button class="boton" type="submit">Suscribirse</button>
+      </form>-->
+
+    </div>
+  </section>
+<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+
+
+
+
+
+
+<!-- Begin Brevo Form -->
+
+
+
+<!-- START - We recommend to place the below code where you want the form in your website html  -->
+<div class="sib-form" style="text-align: center;
+         background-color: transparent;
+
+
+
+        ">
+  <div id="sib-form-container" class="sib-form-container">
+    <div id="error-message" class="sib-form-message-panel" style="font-family:Helvetica, sans-serif; font-size:16px; text-align:left; color:#661d1d; background-color:#ffeded; border-color:#ff4949; border-radius:3px;
+        max-width:540px;">
+      <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+        <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon">
+          <path d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.990 11.5h-8.979c-6.433 0-11.722-5.073-11.990-11.5l-7-168c-.283-6.818 5.167-12.5 11.990-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z" />
+        </svg>
+        <span class="sib-form-message-panel__inner-text">
+
+
+                No hemos podido validar tu suscripción.
+
+
+          </span>
+      </div>
+    </div>
+    <div></div>
+    <div id="success-message" class="sib-form-message-panel" style="font-family:Helvetica, sans-serif; font-size:16px; text-align:left; color:#085229; background-color:#e7faf0; border-color:#13ce66; border-radius:3px;
+        max-width:540px;">
+      <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+        <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon">
+          <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.970l8.52-8.451c4.705-4.667 12.303-4.637 16.970.068l68.976 69.533 163.441-162.130c4.705-4.667 12.303-4.637 16.970.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.970z" />
+        </svg>
+        <span class="sib-form-message-panel__inner-text">
+
+
+                ¡Te has suscrito correctamente!
+
+
+          </span>
+      </div>
+    </div>
+    <div></div>
+    <div id="sib-container" class="sib-container--large sib-container--vertical" style="max-width:540px; text-align:center; background-color:#12262a; border-width:0; border-style:solid; border-color:#afbbc6; border-radius:3px; direction:ltr">
+      <form id="sib-form" method="POST" action="https://45fe520a.sibforms.com/serve/MUIFAC9ecHFULFV0O-Des68_KSuU7RBgzUgsnNooysAE7hptx-3SYfqDWPa_rHNA7hVM-6ozAoEH1WFI_UTTKQrquVv7iQxGP79MxXJYJZT-h22Kas0ecAgLXey882lNanHoeM1-zIauh_csx92HpmNqAKZxgsXQO6v0nxww47R1zs_bg8FSNT0Zn93ngTvg4_y-QwsChCGTRvlnvg==" data-type="subscription">
+
+
+        <div style="padding: 8px 0;">
+
+
+          <div class="sib-form-block sib-image-form-block" style="text-align: center">
+
+            <img src="https://img.mailinblue.com/12408787/images/content_library/original/6ac8262d4c6771868619ef9d.jpg" width="500" height="307" style="width:500px;max-width:100%;height:auto;margin:0 auto;" alt="" title="" />
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+        <div style="padding: 8px 0;">
+
+
+          <div class="sib-form-block" style="font-family:Georgia, serif; font-size:16px; text-align:left; color:#ffffff; background-color:transparent; text-align:left">
+            <div class="sib-text-form-block">
+              <p>Déjanos tu nombre y tu correo y te enviaremos los primeros capítulos.</p>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+
+        <div style="padding: 8px 0;">
+
+
+
+          <div class="sib-input sib-form-block">
+            <div class="form__entry entry_block">
+              <div class="form__label-row ">
+
+
+                <label class="entry__label" style="font-weight: 700; text-align: left; font-family:Georgia, serif; font-size:16px; font-weight:700; text-align:left; color:#ffffff;" for="NOMBRE" data-required="*">Nombre</label>
+
+
+
+
+                <div class="entry__field">
+
+                  <input class="input " maxlength="200" type="text" id="NOMBRE" name="NOMBRE" autocomplete="off" placeholder="Violet Noclira" data-required="true" required />
+
+                </div>
+
+              </div>
+
+              <label class="entry__error entry__error--primary" style="font-family:Helvetica, sans-serif; font-size:16px; text-align:left; color:#661d1d; background-color:#ffeded; border-color:#ff4949; border-radius:3px;">
+              </label>
+
+
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+
+
+        <div style="padding: 8px 0;">
+
+
+
+          <div class="sib-input sib-form-block">
+            <div class="form__entry entry_block">
+              <div class="form__label-row ">
+
+
+                <label class="entry__label" style="font-weight: 700; text-align: left; font-family:Georgia, serif; font-size:16px; font-weight:700; text-align:left; color:#ffffff;" for="EMAIL" data-required="*">Correo electrónico</label>
+
+
+
+
+                <div class="entry__field">
+
+                  <input class="input " type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="tucorreo@ejemplo.com" data-required="true" required />
+
+                </div>
+
+              </div>
+
+              <label class="entry__error entry__error--primary" style="font-family:Helvetica, sans-serif; font-size:16px; text-align:left; color:#661d1d; background-color:#ffeded; border-color:#ff4949; border-radius:3px;">
+              </label>
+
+
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+
+
+        <div style="padding: 8px 0;">
+          <div class="sib-form-block consentimiento">
+            <label for="CONSENTIMIENTO">
+              <input type="checkbox" id="CONSENTIMIENTO" name="CONSENTIMIENTO" value="1" required>
+              <span>He leído la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y acepto recibir los primeros capítulos y novedades de Brujas de Aerthea por correo electrónico.</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="padding: 8px 0;">
+
+
+          <div class="sib-form-block" style="text-align: center">
+            <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-family:Georgia, serif; font-size:16px; text-align:center; color:#FFFFFF; background-color:#cb4363; border-width:0px; border-radius:4px;" form="sib-form" type="submit">
+              <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512">
+                <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.540-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.110 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.140 6.148-10.750 8.461-16.728 5.010z" />
+              </svg>
+              Suscribirse
+            </button>
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+        <input type="text" name="email_address_check" value="" class="input--hidden">
+
+
+        <input type="hidden" name="locale" value="es">
+
+
+      </form>
+    </div>
+  </div>
+</div>
+<!-- END - We recommend to place the above code where you want the form in your website html  -->
+
+<!-- START - We recommend to place the below code in footer or bottom of your website html  -->
+<script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Elige un código de país';
+  window.LOCALE = 'es';
+
+
+
+
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "La información que has proporcionado no es válida. Compruebe el formato del campo e inténtalo de nuevo.";
+
+
+
+
+
+  window.REQUIRED_ERROR_MESSAGE = "Este campo no puede quedarse vacío. ";
+
+  window.GENERIC_INVALID_MESSAGE = "La información que has proporcionado no es válida. Compruebe el formato del campo e inténtalo de nuevo.";
+
+
+  window.INVALID_NUMBER = "La información que has proporcionado no es válida. Compruebe el formato del campo e inténtalo de nuevo.";
+
+
+
+
+  window.INVALID_DATE = "Introduce una fecha válida";
+
+
+
+  window.REQUIRED_MULTISELECT_MESSAGE = 'Selecciona al menos una opción';
+
+
+  window.translation = {
+    common: {
+      selectedList: '{quantity} lista seleccionada',
+      selectedLists: '{quantity} listas seleccionadas',
+      selectedOption: '{quantity} seleccionado',
+      selectedOptions: '{quantity} seleccionados',
+    }
+  };
+
+  var AUTOHIDE = Boolean(0);
+</script>
+
+
+
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+
+
+
+
+<!-- END - We recommend to place the above code in footer or bottom of your website html  -->
+
+<!-- End Brevo Form -->
+
+<!-- Política de privacidad obligatoria: Brevo desactiva la validación nativa del formulario,
+     así que bloqueamos el envío si la casilla no está marcada -->
+<script>
+(function(){
+  var MSG = 'Debes aceptar la política de privacidad para suscribirte.';
+  var form = document.getElementById('sib-form');
+  var cb = document.getElementById('CONSENTIMIENTO');
+  if (!form || !cb) return;
+  var err = document.createElement('p');
+  err.className = 'consent-error';
+  err.setAttribute('role', 'alert');
+  err.textContent = MSG;
+  err.hidden = true;
+  cb.closest('.consentimiento').appendChild(err);
+  function comprobar(e){
+    var t = e.target, esNuestro;
+    if (e.type === 'submit') { esNuestro = (t === form); }
+    else { var b = t.closest && t.closest('button[type="submit"]'); esNuestro = !!b && form.contains(b); }
+    if (!esNuestro) return;
+    if (cb.checked) {
+      /* Analítica: cuenta un intento de suscripción (envío con la casilla marcada) */
+      if (window.goatcounter && window.goatcounter.count && !form.dataset.contado) {
+        form.dataset.contado = '1';
+        window.goatcounter.count({path: 'suscripcion-newsletter', title: 'Intento de suscripción', event: true});
+      }
+      return;
+    }
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    err.hidden = false;
+    cb.setCustomValidity(MSG);
+    cb.reportValidity();
+    cb.focus();
+  }
+  document.addEventListener('click', comprobar, true);
+  document.addEventListener('submit', comprobar, true);
+  cb.addEventListener('change', function(){
+    if (cb.checked) { err.hidden = true; cb.setCustomValidity(''); }
+  });
+})();
+</script>
+
+  <!-- CIERRE
+  <section class="centro">
+    <div class="cont">
+      <h2>El secreto de Violet</h2>
+      <p>Un universo de misterio y poder en Aerthea. Descubre la historia de las Brujas que guardan los secretos más oscuros de la tierra, donde cada hechizo es una prueba de fe y cada sombra un refugio para el alma.</p>
+    </div>
+  </section> -->
+</main>
+
+<footer>
+  <div class="redes">
+    <a href="https://www.instagram.com/brujasdeaerthea" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@brujasdeaerthea" target="_blank" rel="noopener">TikTok</a>
+  </div>
+  <div class="redes">
+    <a href="aviso-legal.html">Aviso legal</a>
+    <a href="privacidad.html">Privacidad y cookies</a>
+  </div>
+  <p>© 2026 Brujas de Aerthea. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+/* Ambiente mágico: motas de luz flotantes + rastro de chispas del ratón.
+   Para apagar algo, pon false en MAGIA. Se desactiva solo si la persona
+   tiene activada la opción "reducir movimiento" en su dispositivo. */
+(function(){
+  var MAGIA={motas:true,rastro:false};
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var c=document.getElementById('magia');
+  if(!c||!c.getContext)return;
+  var ctx=c.getContext('2d'),W=0,H=0,dpr=1;
+  var colores=['217,226,238','95,168,211','95,168,211','179,54,79'];
+  var motas=[],chispas=[],ultimo=null,t0=0;
+
+  function nuevaMota(inicio){
+    return{x:Math.random()*W,y:inicio?Math.random()*H:H+10,r:Math.random()*1.5+.6,
+      vx:(Math.random()-.5)*.15,vy:-(Math.random()*.22+.06),fase:Math.random()*6.28,
+      vel:Math.random()*.02+.008,col:colores[(Math.random()*3)|0]};
+  }
+  function medir(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=window.innerWidth;H=window.innerHeight;
+    c.width=Math.round(W*dpr);c.height=Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    var n=MAGIA.motas?Math.round(Math.min(38,Math.max(12,W*H/50000))):0;
+    while(motas.length<n)motas.push(nuevaMota(true));
+    motas.length=n;
+  }
+
+  if(MAGIA.rastro){
+    window.addEventListener('pointermove',function(e){
+      if(e.pointerType!=='mouse')return;
+      var x=e.clientX,y=e.clientY;
+      if(ultimo){
+        var d=Math.hypot(x-ultimo.x,y-ultimo.y);
+        if(d<7)return;
+        var n=Math.min(3,1+((d/20)|0));
+        for(var i=0;i<n;i++)crearChispa(x-(x-ultimo.x)*i/n,y-(y-ultimo.y)*i/n);
+      }
+      ultimo={x:x,y:y};
+    },{passive:true});
+    document.addEventListener('mouseleave',function(){ultimo=null});
+  }
+  function crearChispa(x,y){
+    if(chispas.length>110)chispas.shift();
+    chispas.push({x:x+(Math.random()-.5)*8,y:y+(Math.random()-.5)*8,
+      vx:(Math.random()-.5)*.6,vy:Math.random()*.5+.1,
+      r:Math.random()*1.9+.7,vida:1,dec:Math.random()*.012+.014,
+      col:colores[(Math.random()*colores.length)|0],estrella:Math.random()<.22});
+  }
+
+  function dibujar(t){
+    ctx.clearRect(0,0,W,H);
+    ctx.globalCompositeOperation='lighter';
+    var i,m,s,a;
+    for(i=0;i<motas.length;i++){
+      m=motas[i];
+      m.x+=m.vx+Math.sin(m.fase)*.12;m.y+=m.vy;m.fase+=m.vel;
+      if(m.y<-12||m.x<-12||m.x>W+12)motas[i]=nuevaMota(false);
+      a=.22+.2*Math.sin(m.fase*3);
+      ctx.fillStyle='rgba('+m.col+','+(a*.22)+')';
+      ctx.beginPath();ctx.arc(m.x,m.y,m.r*3.2,0,6.283);ctx.fill();
+      ctx.fillStyle='rgba('+m.col+','+a+')';
+      ctx.beginPath();ctx.arc(m.x,m.y,m.r,0,6.283);ctx.fill();
+    }
+    for(i=chispas.length-1;i>=0;i--){
+      s=chispas[i];
+      s.x+=s.vx;s.y+=s.vy;s.vy+=.012;s.vida-=s.dec;
+      if(s.vida<=0){chispas.splice(i,1);continue}
+      a=s.vida;
+      ctx.fillStyle='rgba('+s.col+','+(a*.25)+')';
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r*2.8,0,6.283);ctx.fill();
+      ctx.fillStyle='rgba('+s.col+','+a+')';
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r*a+.3,0,6.283);ctx.fill();
+      if(s.estrella){
+        var l=s.r*3.2*a+1;
+        ctx.strokeStyle='rgba('+s.col+','+(a*.8)+')';ctx.lineWidth=.8;
+        ctx.beginPath();ctx.moveTo(s.x-l,s.y);ctx.lineTo(s.x+l,s.y);
+        ctx.moveTo(s.x,s.y-l);ctx.lineTo(s.x,s.y+l);ctx.stroke();
+      }
+    }
+    ctx.globalCompositeOperation='source-over';
+    requestAnimationFrame(dibujar);
+  }
+
+  var tmr;
+  window.addEventListener('resize',function(){clearTimeout(tmr);tmr=setTimeout(medir,150)});
+  medir();
+  requestAnimationFrame(dibujar);
+})();
+</script>
+
+<script>
+(function(){
+  var btn=document.getElementById('menu-btn'),menu=document.getElementById('menu');
+  if(!btn||!menu)return;
+  function abrir(si){
+    menu.classList.toggle('abierto',si);
+    btn.setAttribute('aria-expanded',si?'true':'false');
+    btn.setAttribute('aria-label',si?'Cerrar menú':'Abrir menú');
+  }
+  btn.addEventListener('click',function(e){e.stopPropagation();abrir(!menu.classList.contains('abierto'))});
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))abrir(false)});
+  document.addEventListener('click',function(e){if(!menu.contains(e.target)&&!btn.contains(e.target))abrir(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){abrir(false);btn.focus()}});
+  window.addEventListener('resize',function(){if(window.innerWidth>720)abrir(false)});
+})();
+</script>
+
+<script>
+/* Rendimiento: pausa el resplandor y el haz cuando la portada queda fuera de pantalla */
+(function(){var h=document.querySelector('.hero');if(!h||!('IntersectionObserver' in window))return;
+new IntersectionObserver(function(e){h.classList.toggle('hero-pausa',!e[0].isIntersecting)},{threshold:0}).observe(h);})();
+</script>
 </body>
 </html>
