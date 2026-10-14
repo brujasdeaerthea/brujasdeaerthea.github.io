@@ -14,88 +14,124 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--noche:#0b1220;--bruma:#16223a;--azul:#5fa8d3;--plata:#d9e2ee;--tenue:#8fa0b8;--rubi:#b3364f}
+:root{--noche:#0b1220;--bruma:#16223a;--azul:#5fa8d3;--plata:#d9e2ee;--tenue:#8fa0b8}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
 body{background:var(--noche);color:var(--plata);font-family:'Lora',Georgia,serif;line-height:1.75;font-size:1.05rem}
-h1,h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;line-height:1.15}
 a{color:var(--azul)}
 :focus-visible{outline:2px solid var(--azul);outline-offset:3px}
-header{border-bottom:1px solid var(--bruma);background:rgba(11,18,32,.92)}
-header nav{max-width:900px;margin:auto;padding:.8rem 1.2rem}
-header a{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;text-decoration:none;color:var(--plata);display:inline-flex;align-items:center;gap:.6rem}
-header a img{height:40px;width:auto}
-main{max-width:760px;margin:auto;padding:3.5rem 1.2rem 4rem}
-h1{font-size:clamp(2.2rem,6vw,3.2rem);margin-bottom:.4rem}
-.fecha{color:var(--tenue);font-size:.9rem;margin-bottom:2rem}
-h2{font-size:1.7rem;margin:2.2rem 0 .6rem;color:var(--azul)}
-p,ul{margin-bottom:1rem}
-ul{padding-left:1.4rem}
-li{margin-bottom:.3rem}
-mark.falta{background:#f2d64b;color:#1a1500;padding:0 .25em;border-radius:2px}
-footer{padding:2rem 1.2rem;text-align:center;color:var(--tenue);font-size:.9rem;border-top:1px solid var(--bruma)}
-footer a{color:var(--tenue);text-decoration:none;margin:0 .6rem}
+header{border-bottom:1px solid var(--bruma)}
+nav{max-width:1100px;margin:auto;padding:.8rem 1.2rem;display:flex;gap:1.6rem;align-items:center;flex-wrap:wrap}
+nav .marca{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;margin-right:auto;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;color:var(--plata)}
+nav .marca img{height:40px;width:auto}
+nav a{text-decoration:none;color:var(--tenue)}
+nav a:hover{color:var(--plata)}
+main{max-width:760px;margin:auto;padding:3.5rem 1.2rem 5rem}
+h1,h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;line-height:1.15}
+h1{font-size:clamp(2.2rem,5vw,3rem);margin-bottom:.4rem}
+h2{font-size:1.7rem;margin:2.6rem 0 .8rem}
+.fecha{color:var(--tenue);font-size:.95rem;margin-bottom:2rem}
+p{margin-bottom:1rem}
+ul{margin:0 0 1rem 1.4rem}
+li{margin-bottom:.4rem}
+strong{font-weight:500;color:#fff}
+footer{padding:3rem 1.2rem;text-align:center;color:var(--tenue);font-size:.9rem;border-top:1px solid var(--bruma)}
+footer .redes{display:flex;justify-content:center;gap:1.4rem;margin-bottom:1rem;flex-wrap:wrap}
+footer a{text-decoration:none;color:var(--tenue)}
 footer a:hover{color:var(--plata)}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
+<!-- Analítica sin cookies (GoatCounter). Cambia "brujasdeaerthea" si tu cuenta tiene otro nombre. -->
+<script data-goatcounter="https://brujasdeaerthea.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-<header><nav><a href="index.html"><img src="img/logo.png" alt="" height="40">Brujas de Aerthea</a></nav></header>
+
+<header>
+  <nav>
+    <a class="marca" href="index.html"><img src="img/logo.png" alt="" height="40">Brujas de Aerthea</a>
+    <a href="index.html">Inicio</a>
+    <a href="aviso-legal.html">Aviso legal</a>
+    <a href="privacidad.html" aria-current="page">Privacidad y cookies</a>
+  </nav>
+</header>
 
 <main>
   <h1>Política de privacidad y cookies</h1>
-  <p class="fecha">Última actualización: 12 de octubre de 2026</p>
+  <p class="fecha">Última actualización: 14 de octubre de 2026</p>
 
   <h2>1. Responsable del tratamiento</h2>
+  <p>El responsable de los datos personales que se recogen en este sitio es <strong>Ángel Hache</strong> (seudónimo), autor a título particular.</p>
   <ul>
-    <li><strong>Responsable:</strong> Ángel Hache (seudónimo), autor a título particular.</li>
-    <li><strong>Dirección de contacto:</strong> Calle Nueva Peña Parda, 83, 18690 Almuñécar (Granada).</li>
-    <li><strong>Correo electrónico:</strong> <a href="mailto:info@brujasdeaerthea.com">info@brujasdeaerthea.com</a></li>
+    <li>Dirección: Calle Nueva Peña Parda, 83, 18690 Almuñécar (Granada)</li>
+    <li>Correo electrónico: <a href="mailto:info@brujasdeaerthea.com">info@brujasdeaerthea.com</a></li>
   </ul>
 
   <h2>2. Qué datos recogemos</h2>
-  <p>Cuando te suscribes a la newsletter, te pedimos tu <strong>nombre</strong> y tu <strong>correo electrónico</strong>. No recogemos ningún otro dato personal a través de este sitio.</p>
+  <ul>
+    <li><strong>Si te suscribes a la newsletter:</strong> tu nombre y tu correo electrónico.</li>
+    <li><strong>Si solo visitas la web:</strong> datos estadísticos anónimos y agregados sobre la visita (qué páginas se ven, desde qué sitio se llega, el país, el navegador y el tipo de dispositivo). Los explicamos en el apartado 10.</li>
+  </ul>
+  <p>No recogemos ningún otro dato personal a través del sitio.</p>
 
   <h2>3. Para qué los usamos</h2>
   <ul>
-    <li>Enviarte el prólogo y los primeros capítulos de <em>El Secreto de Violet</em>.</li>
-    <li>Enviarte novedades sobre la saga <em>Brujas de Aerthea</em>: lanzamientos, avances, contenido exclusivo y noticias de la comunidad.</li>
+    <li>Enviarte el prólogo y los primeros capítulos de <em>El secreto de Violet</em>.</li>
+    <li>Enviarte novedades de la saga <em>Brujas de Aerthea</em>: lanzamientos, avances, contenido exclusivo y noticias de la comunidad.</li>
+    <li>Saber cuánta gente visita la web y desde dónde llega, para mejorar el sitio y decidir dónde publicar. Estas cifras no identifican a nadie.</li>
   </ul>
-  <p>No tomamos decisiones automatizadas ni elaboramos perfiles con tus datos.</p>
+  <p>No tomamos decisiones automatizadas ni elaboramos perfiles.</p>
 
   <h2>4. Base legal</h2>
-  <p>El tratamiento se basa en tu <strong>consentimiento</strong> (art. 6.1.a del Reglamento (UE) 2016/679, RGPD), que das al marcar la casilla del formulario y pulsar «Suscribirse». También se aplica el art. 21 de la LSSI-CE para las comunicaciones comerciales por correo electrónico. Puedes retirar el consentimiento cuando quieras, sin que ello afecte a lo tratado hasta entonces.</p>
+  <ul>
+    <li><strong>Newsletter:</strong> tu consentimiento (art. 6.1.a del Reglamento (UE) 2016/679, RGPD), que das al marcar la casilla del formulario y pulsar «Suscribirse». Para las comunicaciones por correo electrónico, también el art. 21 de la Ley 34/2002 (LSSI-CE).</li>
+    <li><strong>Estadísticas de visitas:</strong> nuestro interés legítimo en conocer el uso de la web de forma anónima (art. 6.1.f del RGPD).</li>
+  </ul>
+  <p>Puedes retirar tu consentimiento en cualquier momento, sin que afecte a lo tratado antes.</p>
 
-  <h2>5. A quién se comunican tus datos</h2>
-  <p>Para enviar los correos usamos el servicio <strong>Brevo</strong> (Sendinblue SAS, con sede en Francia), que actúa como encargado del tratamiento y almacena tu nombre y tu correo. Puedes consultar su política de privacidad en <a href="https://www.brevo.com/es/legal/privacypolicy/" target="_blank" rel="noopener">brevo.com</a>. No cedemos tus datos a ningún otro tercero, salvo obligación legal.</p>
+  <h2>5. Destinatarios y encargados</h2>
+  <ul>
+    <li><strong>Brevo</strong> (Sendinblue SAS, con sede en Francia) gestiona la newsletter como encargado del tratamiento y almacena tu nombre y tu correo. Puedes consultar su política en <a href="https://www.brevo.com/legal/privacypolicy/" target="_blank" rel="noopener">brevo.com</a>.</li>
+    <li><strong>GoatCounter</strong> recibe los datos técnicos de cada visita para elaborar las estadísticas descritas en el apartado 10. Puedes consultar su política en <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener">goatcounter.com</a>.</li>
+  </ul>
+  <p>No cedemos tus datos a otros terceros, salvo obligación legal.</p>
 
-  <h2>6. Cuánto tiempo los conservamos</h2>
-  <p>Mientras sigas suscrito. Cuando te des de baja o retires tu consentimiento, eliminaremos tus datos, salvo los que debamos conservar bloqueados durante los plazos legales para atender posibles responsabilidades.</p>
+  <h2>6. Plazo de conservación</h2>
+  <p>Conservamos tu nombre y tu correo mientras sigas suscrito. Cuando te das de baja o retiras el consentimiento, los eliminamos, salvo los que debamos conservar bloqueados durante los plazos legales por posibles responsabilidades.</p>
+  <p>Las estadísticas de visitas son anónimas y agregadas, así que no permiten identificarte.</p>
 
   <h2>7. Tus derechos</h2>
-  <p>Puedes ejercer tus derechos de <strong>acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad</strong> escribiendo a <a href="mailto:info@brujasdeaerthea.com">info@brujasdeaerthea.com</a> e indicando qué derecho quieres ejercer. Para darte de baja, usa el enlace que aparece al final de cada correo.</p>
-  <p>Si crees que no hemos tratado tus datos correctamente, puedes presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>).</p>
+  <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad escribiendo a <a href="mailto:info@brujasdeaerthea.com">info@brujasdeaerthea.com</a> e indicando el derecho que quieres ejercer.</p>
+  <p>Para dejar de recibir la newsletter, usa el enlace de baja que aparece al final de cada correo.</p>
 
-  <h2>8. Menores</h2>
-  <p>Este sitio no está dirigido a menores de 14 años. Si tienes menos de 14, necesitas el consentimiento de tu madre, padre o tutor para suscribirte.</p>
+  <h2>8. Autoridad de control</h2>
+  <p>Si consideras que no hemos tratado bien tus datos, puedes presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>).</p>
 
-  <h2 id="cookies">9. Cookies y tecnologías similares</h2>
-  <p>Este sitio <strong>no utiliza cookies propias</strong>, ni de analítica ni de publicidad, y no incluye herramientas de seguimiento.</p>
-  <p>Hay dos elementos de terceros que pueden intervenir:</p>
+  <h2>9. Menores</h2>
+  <p>Este sitio no está dirigido a menores de 14 años. Si tienes menos de 14 años, necesitas el consentimiento de tu madre, padre o tutor para suscribirte.</p>
+
+  <h2>10. Cookies, estadísticas y servicios de terceros</h2>
   <ul>
-    <li><strong>Formulario de suscripción (Brevo).</strong> Puede utilizar almacenamiento técnico necesario para que el formulario funcione. No se usa con fines publicitarios ni de seguimiento.</li>
-    <li><strong>Tipografías (Google Fonts).</strong> Para mostrar las letras de la web, tu navegador las descarga de los servidores de Google, que reciben tu dirección IP. No instalan cookies de seguimiento por este motivo.</li>
+    <li><strong>Cookies propias:</strong> este sitio no usa cookies propias, ni de analítica ni de publicidad.</li>
+    <li><strong>Estadísticas de visitas (GoatCounter):</strong> usamos GoatCounter para contar las visitas de forma anónima y agregada: qué páginas se ven, desde qué sitio o red social se llega, el país, el navegador, el sistema operativo y el tamaño de pantalla. También contamos, sin identificarte, cuántas veces se pulsa el botón de suscripción. GoatCounter no usa cookies, no guarda tu dirección IP completa, no te sigue entre sitios web y no usa los datos con fines publicitarios. Por eso no necesitamos pedirte permiso con un aviso de cookies.</li>
+    <li><strong>Formulario de suscripción (Brevo):</strong> puede usar almacenamiento técnico necesario para funcionar, sin fines publicitarios ni de seguimiento.</li>
+    <li><strong>Google Fonts:</strong> tu navegador descarga las tipografías de los servidores de Google, que reciben tu dirección IP para poder enviarlas. No se instalan cookies de seguimiento por este motivo.</li>
+    <li><strong>Instagram y TikTok:</strong> los enlaces a nuestras redes llevan a sitios de terceros con sus propias políticas de privacidad.</li>
   </ul>
-  <p>Los enlaces a Instagram y TikTok te llevan a sitios de terceros con sus propias políticas. Puedes bloquear o borrar cookies desde la configuración de tu navegador.</p>
+  <p>Puedes bloquear o borrar las cookies desde la configuración de tu navegador.</p>
 
-  <h2>10. Cambios</h2>
-  <p>Podemos actualizar esta política para adaptarla a cambios legales o del sitio. La fecha de la última revisión aparece al principio de la página.</p>
+  <h2>11. Cambios en esta política</h2>
+  <p>Podemos actualizar esta política para adaptarla a cambios legales o del sitio. La fecha de la última revisión aparece al inicio de la página.</p>
 </main>
 
 <footer>
-  <a href="index.html">Inicio</a>
-  <a href="aviso-legal.html">Aviso legal</a>
-  <a href="privacidad.html">Privacidad y cookies</a>
+  <div class="redes">
+    <a href="https://www.instagram.com/brujasdeaerthea" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@brujasdeaerthea" target="_blank" rel="noopener">TikTok</a>
+  </div>
+  <div class="redes">
+    <a href="aviso-legal.html">Aviso legal</a>
+    <a href="privacidad.html">Privacidad y cookies</a>
+  </div>
+  <p>© 2026 Brujas de Aerthea. Todos los derechos reservados.</p>
 </footer>
+
 </body>
 </html>
