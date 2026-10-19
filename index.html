@@ -33,7 +33,7 @@ html{scroll-behavior:smooth}
 body{background:var(--noche);color:var(--plata);font-family:'Lora',Georgia,serif;line-height:1.75;font-size:1.05rem}
 h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;line-height:1.15}
 a{color:inherit}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 :focus-visible{outline:2px solid var(--azul);outline-offset:3px}
 
 /* Menú */
@@ -136,6 +136,8 @@ button.boton{border:0;cursor:pointer;font:inherit;margin-top:.4rem}
 /* Texto de los campos de la newsletter en negro (el fondo del campo es blanco) */
 #sib-container .entry__field .input{color:#111;background:transparent;caret-color:#111}
 #sib-container .entry__field .input:-webkit-autofill{-webkit-text-fill-color:#111}
+/* Ancla del formulario (/tiktok, /ig y botones): deja hueco para el menú fijo */
+#suscribete{scroll-margin-top:4.5rem}
 .consentimiento .consent-error{color:#ff8fa3;font-family:Georgia,serif;font-size:.85rem;margin:.5rem 0 0;text-align:left}
 
 footer{padding:3rem 1.2rem;text-align:center;color:var(--tenue);font-size:.9rem;border-top:1px solid var(--bruma)}
@@ -226,7 +228,7 @@ footer a:hover{color:var(--plata)}
     <ul class="menu" id="menu">
       <li><a href="#sinopsis">Sinopsis</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
-      <li><a href="#comunidad">Leer muestra</a></li>
+      <li><a href="#suscribete">Leer muestra</a></li>
       <li><a href="https://www.instagram.com/brujasdeaerthea" target="_blank" rel="noopener">¡Síguenos!</a></li>
     </ul>
   </nav>
@@ -236,7 +238,7 @@ footer a:hover{color:var(--plata)}
   <!-- PORTADA -->
   <div class="hero">
     <div>
-      <div class="logo-brillo"><span class="luz luz-halo" aria-hidden="true"><i></i></span><img class="logo" src="img/logo.png" alt="Logo de Brujas de Aerthea con forma de luna creciente"><span class="luz luz-luna" aria-hidden="true"><i></i></span></div>
+      <div class="logo-brillo"><span class="luz luz-halo" aria-hidden="true"><i></i></span><img class="logo" src="img/logo.png" width="1280" height="853" alt="Logo de Brujas de Aerthea con forma de luna creciente"><span class="luz luz-luna" aria-hidden="true"><i></i></span></div>
       <h1 aria-label="El Secreto de Violet"><span class="pal" aria-hidden="true"><span style="--i:0">E</span><span style="--i:1">l</span></span> <span class="pal" aria-hidden="true"><span style="--i:3">S</span><span style="--i:4">e</span><span style="--i:5">c</span><span style="--i:6">r</span><span style="--i:7">e</span><span style="--i:8">t</span><span style="--i:9">o</span></span> <span class="pal" aria-hidden="true"><span style="--i:11">d</span><span style="--i:12">e</span></span> <span class="pal" aria-hidden="true"><span style="--i:14">V</span><span style="--i:15">i</span><span style="--i:16">o</span><span style="--i:17">l</span><span style="--i:18">e</span><span style="--i:19">t</span></span></h1>
       <span class="boton deshabilitado">Próximamente</span>
     </div>
@@ -245,7 +247,7 @@ footer a:hover{color:var(--plata)}
   <!-- POR QUÉ LEER -->
   <section>
     <div class="dos">
-      <img src="img/violet.jpg" loading="lazy" decoding="async" alt="Ilustración de la saga Brujas de Aerthea">
+      <img src="img/violet.jpg" width="998" height="1551" loading="lazy" decoding="async" alt="Ilustración de la saga Brujas de Aerthea">
       <div>
         <h2>¿Por qué leer esta saga?</h2>
         <ul class="lista">
@@ -283,7 +285,7 @@ footer a:hover{color:var(--plata)}
    <div class="cont">
      <h2>Lee el prólogo y los primeros capítulos</h2>
      <p>Atrévete a cruzar el umbral. Suscríbete a la newsletter y recibe gratis el prólogo y los primeros capítulos para adentrarte en el reino de Aerthea y descubrir los oscuros secretos que aguardan a Violet.</p>
-     <a class="boton" href="#comunidad">Suscríbete a la newsletter</a>
+     <a class="boton" href="#suscribete">Suscríbete a la newsletter</a>
    </div>
  </section>
 
@@ -341,7 +343,7 @@ footer a:hover{color:var(--plata)}
 
 
 <!-- START - We recommend to place the below code where you want the form in your website html  -->
-<div class="sib-form" style="text-align: center;
+<div class="sib-form" id="suscribete" style="text-align: center;
          background-color: transparent;
 
 
@@ -759,6 +761,29 @@ footer a:hover{color:var(--plata)}
 /* Rendimiento: pausa el resplandor y el haz cuando la portada queda fuera de pantalla */
 (function(){var h=document.querySelector('.hero');if(!h||!('IntersectionObserver' in window))return;
 new IntersectionObserver(function(e){h.classList.toggle('hero-pausa',!e[0].isIntersecting)},{threshold:0}).observe(h);})();
+</script>
+<script>
+/* Llegada directa al formulario (/tiktok, /ig, botones con #suscribete): cuando
+   terminan de cargar imágenes y fuentes, la página puede desplazarse unos píxeles
+   y el formulario quedaría fuera de sitio. Lo recolocamos si la persona aún no ha
+   movido la página por su cuenta. */
+(function(){
+  if(location.hash!=='#suscribete')return;
+  var f=document.getElementById('suscribete');if(!f)return;
+  var movido=false;
+  ['wheel','touchstart','keydown','mousedown'].forEach(function(t){
+    window.addEventListener(t,function(){movido=true},{passive:true,once:true});
+  });
+  function colocar(){
+    if(movido)return;
+    var raiz=document.documentElement,antes=raiz.style.scrollBehavior;
+    raiz.style.scrollBehavior='auto';
+    f.scrollIntoView(true);
+    raiz.style.scrollBehavior=antes;
+  }
+  function alCargar(){colocar();setTimeout(colocar,700)}
+  if(document.readyState==='complete')alCargar();else window.addEventListener('load',alCargar);
+})();
 </script>
 </body>
 </html>
