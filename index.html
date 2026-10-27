@@ -84,6 +84,9 @@ nav a:hover{color:var(--plata)}
 .boton:hover{background:#cf4663}
 .boton.claro{background:transparent;border:1px solid var(--azul);color:var(--azul)}
 .boton.claro:hover{background:var(--azul);color:var(--noche)}
+.cta-hero{display:flex;flex-wrap:wrap;justify-content:center;gap:0 .9rem}
+.cta-hero .boton.claro{background:rgba(11,18,32,.45)}
+.cta-hero .boton.claro:hover{background:var(--azul)}
 .boton.deshabilitado,.boton.deshabilitado:hover{background:transparent;border:1px dashed var(--tenue);color:var(--tenue);cursor:default;user-select:none}
 
 /* Secciones */
@@ -226,6 +229,7 @@ footer a:hover{color:var(--plata)}
       <span></span><span></span><span></span>
     </button>
     <ul class="menu" id="menu">
+      <li><a href="/preventa">Preventa</a></li>
       <li><a href="#sinopsis">Sinopsis</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#suscribete">Leer muestra</a></li>
@@ -240,7 +244,7 @@ footer a:hover{color:var(--plata)}
     <div>
       <div class="logo-brillo"><span class="luz luz-halo" aria-hidden="true"><i></i></span><img class="logo" src="img/logo.png" width="1280" height="853" alt="Logo de Brujas de Aerthea con forma de luna creciente"><span class="luz luz-luna" aria-hidden="true"><i></i></span></div>
       <h1 aria-label="El Secreto de Violet"><span class="pal" aria-hidden="true"><span style="--i:0">E</span><span style="--i:1">l</span></span> <span class="pal" aria-hidden="true"><span style="--i:3">S</span><span style="--i:4">e</span><span style="--i:5">c</span><span style="--i:6">r</span><span style="--i:7">e</span><span style="--i:8">t</span><span style="--i:9">o</span></span> <span class="pal" aria-hidden="true"><span style="--i:11">d</span><span style="--i:12">e</span></span> <span class="pal" aria-hidden="true"><span style="--i:14">V</span><span style="--i:15">i</span><span style="--i:16">o</span><span style="--i:17">l</span><span style="--i:18">e</span><span style="--i:19">t</span></span></h1>
-      <span class="boton deshabilitado">Próximamente</span>
+      <div class="cta-hero"><a class="boton" href="/preventa">Reservar el ebook · 3,99 €</a><a class="boton claro" href="#suscribete">Leer el principio gratis</a></div>
     </div>
   </div>
 
