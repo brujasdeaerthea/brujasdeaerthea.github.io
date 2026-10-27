@@ -4,16 +4,9 @@
 <meta charset="UTF-8">
 <title>Brujas de Aerthea</title>
 <meta name="robots" content="noindex">
-<link rel="canonical" href="https://brujasdeaerthea.com/">
-<script>
-/* Enlace de la bio de tiktok. Desde el 31 oct 2026 (hora de España) lleva a la
-   página de preventa; antes, al formulario de la newsletter de la portada. */
-var PREVENTA_DESDE = Date.UTC(2026, 9, 30, 23, 0); // 31 oct, 00:00 en España
-location.replace(Date.now() >= PREVENTA_DESDE
-  ? '/preventa?utm_source=tiktok'
-  : '/?utm_source=tiktok#suscribete');
-</script>
-<noscript><meta http-equiv="refresh" content="0; url=/preventa?utm_source=tiktok"></noscript>
+<link rel="canonical" href="https://brujasdeaerthea.com/preventa">
+<meta http-equiv="refresh" content="0; url=/preventa?utm_source=tiktok">
+<script>location.replace('/preventa?utm_source=tiktok');</script>
 </head>
 <body style="background:#0b1220;color:#e7f4fe;font-family:Georgia,serif;text-align:center;padding:3rem">
 <p><a href="/preventa?utm_source=tiktok" style="color:#5fa8d3">Entrar en Aerthea</a></p>

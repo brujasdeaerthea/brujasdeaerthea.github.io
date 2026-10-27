@@ -63,6 +63,8 @@ nav a:hover{color:var(--plata)}
 .formato-tit{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.35rem;color:#fff;margin-bottom:.5rem}
 .formato-tit span{display:block;font-family:'Lora',Georgia,serif;font-weight:400;font-size:.88rem;color:var(--azul)}
 .leer a{font-size:1rem}
+.boton small{display:block;font-size:.8rem;opacity:.85;font-weight:400}
+.cambiar{font-size:.82rem}
 .cita{padding:4rem 1.2rem 1rem}
 .cita figure{max-width:760px;margin:auto;text-align:center}
 .cita blockquote{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.3;color:var(--azul)}
@@ -178,11 +180,11 @@ footer a:hover{color:var(--plata)}
 
         <div class="formato">
           <p class="formato-tit">Ebook Kindle <span>3,99 € · precio de lanzamiento</span></p>
-          <div class="tiendas" id="tiendas">
-            <a class="boton" data-tienda="es" href="https://www.amazon.es/dp/">Reservar en Amazon España</a>
-            <a class="boton" data-tienda="mx" href="https://www.amazon.com.mx/dp/">Reservar en Amazon México</a>
+          <div class="tiendas">
+            <a class="boton" id="comprar-ebook" data-formato="ebook" href="https://www.amazon.com/dp/">Reservar en Amazon<small></small></a>
           </div>
-          <p class="otros">Llega solo a tu Kindle el día 13. ¿Otro país? <a data-tienda="us" href="https://www.amazon.com/dp/">Amazon.com</a></p>
+          <p class="otros">Llega solo a tu Kindle el día 13.</p>
+          <p class="otros cambiar">¿No es tu tienda? <a data-formato="ebook" data-tienda="es" href="https://www.amazon.es/dp/">España</a> · <a data-formato="ebook" data-tienda="mx" href="https://www.amazon.com.mx/dp/">México</a> · <a data-formato="ebook" data-tienda="us" href="https://www.amazon.com/dp/">Otros países</a></p>
         </div>
 
         <div class="formato" id="tapa">
@@ -527,42 +529,56 @@ var ASIN_TAPA = '';
 (function(){
   var p = new URLSearchParams(location.search);
   var origen = (p.get('utm_source') || 'web').replace(/[^a-z0-9_-]/gi,'');
-  var tiendas = document.querySelectorAll('[data-tienda]');
 
-  /* Quien escribe desde México ve primero su Amazon */
+  /* Un solo botón: cada visita va a su Amazon según la zona horaria del
+     dispositivo. España (y resto de Europa) → .es; México → .com.mx;
+     el resto (EE. UU. y Latinoamérica) → .com, que es su tienda Kindle. */
+  var DOMINIO = {es: 'amazon.es', mx: 'amazon.com.mx', us: 'amazon.com'};
   var zona = '';
   try { zona = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e) {}
   var lengua = (navigator.language || '').toLowerCase();
-  var esMexico = lengua === 'es-mx' || /^America\/(Mexico_City|Monterrey|Merida|Cancun|Chihuahua|Hermosillo|Mazatlan|Tijuana|Matamoros|Bahia_Banderas|Ojinaga|Ciudad_Juarez)$/.test(zona);
-  if (esMexico) {
-    var c = document.getElementById('tiendas'), mx = c.querySelector('[data-tienda="mx"]');
-    c.insertBefore(mx, c.firstChild);
-    c.querySelector('[data-tienda="es"]').classList.add('claro');
-  } else {
-    document.querySelector('[data-tienda="mx"]').classList.add('claro');
-  }
+  var tienda = 'us';
+  if (/^(Europe\/|Atlantic\/Canary|Africa\/Ceuta)/.test(zona)) tienda = 'es';
+  else if (lengua === 'es-mx' || /^America\/(Mexico_City|Monterrey|Merida|Cancun|Chihuahua|Hermosillo|Mazatlan|Tijuana|Matamoros|Bahia_Banderas|Ojinaga|Ciudad_Juarez)$/.test(zona)) tienda = 'mx';
+  else if (!zona && lengua === 'es-es') tienda = 'es';
 
-  if (ASIN_TAPA) {
-    document.querySelector('#tapa .boton').outerHTML = '<a class="boton claro" data-tienda="tapa-es" href="https://www.amazon.es/dp/' + ASIN_TAPA + '">Comprar en Amazon España</a><p class="otros">¿Otro país? <a data-tienda="tapa-us" href="https://www.amazon.com/dp/' + ASIN_TAPA + '">Amazon.com</a></p>';
-    tiendas = document.querySelectorAll('[data-tienda]');
-  }
-
-  tiendas.forEach(function(a){
-    if (!ASIN && !/^tapa-/.test(a.dataset.tienda)) {
-      a.removeAttribute('href');
-      a.setAttribute('aria-disabled','true');
-      if (a.classList.contains('boton')) { a.classList.add('deshabilitado'); a.textContent = a.textContent.replace('Reservar en','Muy pronto en'); }
-      return;
-    }
-    if (!/^tapa-/.test(a.dataset.tienda)) a.href += ASIN;
+  function enlace(a, t, asin) {
+    a.href = 'https://www.' + DOMINIO[t] + '/dp/' + asin;
+    a.dataset.tienda = t;
     a.target = '_blank';
     a.rel = 'noopener';
-    /* Analítica: un clic de precompra por tienda y red de origen (p. ej. precompra-mx-tiktok) */
+    /* Analítica: un clic de compra por formato, tienda y red de origen (p. ej. precompra-mx-tiktok) */
     a.addEventListener('click', function(){
       if (window.goatcounter && window.goatcounter.count)
-        window.goatcounter.count({path: 'precompra-' + a.dataset.tienda + '-' + origen, title: 'Clic en precompra', event: true});
+        window.goatcounter.count({path: (a.dataset.formato === 'tapa' ? 'compra-tapa-' : 'precompra-') + a.dataset.tienda + '-' + origen, title: 'Clic en Amazon', event: true});
     });
-  });
+  }
+
+  /* Ebook */
+  var boton = document.getElementById('comprar-ebook');
+  if (!ASIN) {
+    boton.removeAttribute('href');
+    boton.setAttribute('aria-disabled','true');
+    boton.classList.add('deshabilitado');
+    boton.firstChild.textContent = 'Muy pronto en Amazon';
+    document.querySelector('.cambiar').hidden = true;
+  } else {
+    enlace(boton, tienda, ASIN);
+    boton.querySelector('small').textContent = DOMINIO[tienda];
+    document.querySelectorAll('.cambiar a').forEach(function(a){ enlace(a, a.dataset.tienda, ASIN); });
+  }
+
+  /* Tapa blanda: Amazon México no la vende (KDP no imprime para .com.mx), así que México va a .com */
+  if (ASIN_TAPA) {
+    var tTapa = tienda === 'mx' ? 'us' : tienda;
+    var caja = document.querySelector('#tapa .boton');
+    caja.outerHTML = '<a class="boton claro" id="comprar-tapa" data-formato="tapa">Comprar en Amazon<small></small></a>' +
+      '<p class="otros cambiar">¿No es tu tienda? <a data-formato="tapa" data-tienda="es">España</a> · <a data-formato="tapa" data-tienda="us">Otros países</a></p>';
+    var bt = document.getElementById('comprar-tapa');
+    enlace(bt, tTapa, ASIN_TAPA);
+    bt.querySelector('small').textContent = DOMINIO[tTapa];
+    document.querySelectorAll('#tapa .cambiar a').forEach(function(a){ enlace(a, a.dataset.tienda, ASIN_TAPA); });
+  }
 })();
 </script>
 </body>
