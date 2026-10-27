@@ -71,6 +71,19 @@ nav .marca{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:7
 nav .marca img{height:40px;width:auto}
 nav a{text-decoration:none;color:var(--tenue)}
 nav a:hover{color:var(--plata)}
+.menu{display:flex;gap:1.6rem;list-style:none}
+.menu-btn{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:44px;height:44px;background:transparent;border:1px solid var(--tenue);border-radius:3px;cursor:pointer}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--plata);border-radius:2px;transition:transform .25s,opacity .2s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:720px){
+  .menu-btn{display:flex}
+  .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--noche);border-bottom:1px solid var(--bruma);box-shadow:0 12px 24px rgba(0,0,0,.4)}
+  .menu.abierto{display:flex}
+  .menu a{display:block;padding:1rem 1.4rem;border-top:1px solid var(--bruma);font-size:1.05rem}
+  .menu a:hover{background:var(--bruma)}
+}
 
 /* Preventa */
 .preventa{padding:3.5rem 1.2rem 4rem;background:linear-gradient(rgba(11,18,32,.7),var(--noche)),url("img/portada-bosque.jpg") center/cover,var(--bruma)}
@@ -193,7 +206,15 @@ footer a:hover{color:var(--plata)}
 <header>
   <nav>
     <a class="marca" href="/"><img src="img/logo.png" alt="" height="40">Brujas de Aerthea</a>
-    <a href="/#sinopsis">Sinopsis</a>
+    <button class="menu-btn" id="menu-btn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="menu" id="menu">
+      <li><a href="/#sinopsis">Sinopsis</a></li>
+      <li><a href="/#roadmap">Roadmap</a></li>
+      <li><a href="#suscribete">Leer muestra</a></li>
+      <li><a href="https://www.instagram.com/brujasdeaerthea" target="_blank" rel="noopener">¡Síguenos!</a></li>
+    </ul>
   </nav>
 </header>
 
@@ -611,6 +632,22 @@ var ASIN_TAPA = '';
     bt.querySelector('small').textContent = DOMINIO[tTapa];
     document.querySelectorAll('#tapa .cambiar a').forEach(function(a){ enlace(a, a.dataset.tienda, ASIN_TAPA); });
   }
+})();
+</script>
+<script>
+(function(){
+  var btn=document.getElementById('menu-btn'),menu=document.getElementById('menu');
+  if(!btn||!menu)return;
+  function abrir(si){
+    menu.classList.toggle('abierto',si);
+    btn.setAttribute('aria-expanded',si?'true':'false');
+    btn.setAttribute('aria-label',si?'Cerrar menú':'Abrir menú');
+  }
+  btn.addEventListener('click',function(e){e.stopPropagation();abrir(!menu.classList.contains('abierto'))});
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))abrir(false)});
+  document.addEventListener('click',function(e){if(!menu.contains(e.target)&&!btn.contains(e.target))abrir(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){abrir(false);btn.focus()}});
+  window.addEventListener('resize',function(){if(window.innerWidth>720)abrir(false)});
 })();
 </script>
 </body>
