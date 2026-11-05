@@ -109,11 +109,17 @@ nav a:hover{color:var(--plata)}
 .leer a{font-size:1rem}
 .boton small{display:block;font-size:.8rem;opacity:.85;font-weight:400}
 .cambiar{font-size:.82rem}
-.cita{padding:4rem 1.2rem 1rem}
-.cita figure{max-width:760px;margin:auto;text-align:center}
-.cita blockquote{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.3;color:var(--azul)}
-.cita blockquote::before{content:"☾";display:block;font-size:1.4rem;color:var(--rubi);margin-bottom:.8rem}
-.cita figcaption{margin-top:1rem;font-size:.95rem;color:var(--tenue)}
+.resenas{padding:4rem 1.2rem 1rem;text-align:center}
+.resenas h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:clamp(1.5rem,4vw,2.1rem);color:var(--azul);margin-bottom:2rem}
+.resenas h2::before{content:"☾";display:block;font-size:1.4rem;color:var(--rubi);margin-bottom:.6rem}
+.resenas-lista{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.resenas figure{margin:0}
+.resenas .estrellas{color:var(--rubi);letter-spacing:.15em;font-size:1.05rem;margin-bottom:.7rem}
+.resenas blockquote{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:clamp(1.2rem,2.6vw,1.4rem);line-height:1.35;color:var(--azul)}
+.resenas figcaption{margin-top:.8rem;font-size:.9rem;color:var(--tenue)}
+.resenas .fuente{margin-top:2rem;font-size:.9rem;color:var(--tenue)}
+.resenas .fuente a{color:var(--azul)}
+@media(max-width:800px){.resenas-lista{grid-template-columns:1fr;max-width:520px}}
 .otros a{color:var(--azul)}
 @media(max-width:720px){
   .preventa{padding-top:2.5rem}
@@ -250,12 +256,27 @@ footer a:hover{color:var(--plata)}
     </div>
   </section>
 
-  <!-- CITA DE LECTOR -->
-  <section class="cita">
-    <figure>
-      <blockquote><p>“Encantador y mágico, es como leer a Laura Gallego pero con palabrotas.”</p></blockquote>
-      <figcaption>— Beta reader de Brujas de Aerthea</figcaption>
-    </figure>
+  <!-- RESEÑAS DE LECTORES (Goodreads, copia anticipada) -->
+  <section class="resenas" aria-labelledby="resenas-titulo">
+    <h2 id="resenas-titulo">Lo que dicen los primeros lectores</h2>
+    <div class="resenas-lista">
+      <figure>
+        <div class="estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+        <blockquote><p>“No suelo leer libros de fantasía, pero este libro me ha mantenido enganchada todo el rato.”</p></blockquote>
+        <figcaption>— Marta, en Goodreads</figcaption>
+      </figure>
+      <figure>
+        <div class="estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+        <blockquote><p>“Sin duda un libro de fantasía oscura que no te dejará indiferente.”</p></blockquote>
+        <figcaption>— Itziar, en Goodreads</figcaption>
+      </figure>
+      <figure>
+        <div class="estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+        <blockquote><p>“Lo recomiendo si te gusta la fantasía y, sobre todo, si te gustan las brujas.”</p></blockquote>
+        <figcaption>— Sergio, en Goodreads</figcaption>
+      </figure>
+    </div>
+    <p class="fuente">Reseñas de lectores que recibieron una copia anticipada. <a href="https://www.goodreads.com/book/show/262441399" target="_blank" rel="noopener">Leerlas en Goodreads</a></p>
   </section>
 
   <!-- NEWSLETTER -->
