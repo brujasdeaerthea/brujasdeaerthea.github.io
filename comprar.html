@@ -104,7 +104,8 @@ nav a:hover{color:var(--plata)}
 .boton.deshabilitado,.boton.deshabilitado:hover{background:transparent;border:1px dashed var(--tenue);color:var(--tenue);cursor:default}
 .otros{font-size:.9rem;color:var(--tenue);margin-top:.5rem}
 .formatos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:520px}
-.formatos .boton{padding:.9rem .8rem}
+.formatos .boton{padding:.9rem .8rem;font-size:1.05rem}
+.formatos .boton b{display:block;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.35rem;line-height:1.2}
 .formato{display:flex;flex-direction:column;justify-content:space-between}
 .formato-tit{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.35rem;color:#fff;margin-bottom:.5rem}
 .formato-tit span{display:block;font-family:'Lora',Georgia,serif;font-weight:400;font-size:.88rem;color:var(--azul)}
@@ -243,12 +244,10 @@ footer a:hover{color:var(--plata)}
 
         <div class="formatos">
           <div class="formato">
-            <p class="formato-tit">Ebook Kindle <span>3,99 €</span></p>
-            <a class="boton" id="comprar-ebook" data-formato="ebook" href="https://www.amazon.es/dp/B0HPBHXKMN">Comprar en Amazon<small></small></a>
+            <a class="boton" id="comprar-ebook" data-formato="ebook" href="https://www.amazon.es/dp/B0HPBHXKMN"><b>Ebook Kindle</b> 3,99 €<small>Comprar en <span class="dominio">Amazon</span></small></a>
           </div>
           <div class="formato" id="tapa">
-            <p class="formato-tit">Tapa blanda <span>21,95 €</span></p>
-            <a class="boton" id="comprar-tapa" data-formato="tapa" href="https://www.amazon.es/dp/8409934167">Comprar en Amazon<small></small></a>
+            <a class="boton" id="comprar-tapa" data-formato="tapa" href="https://www.amazon.es/dp/8409934167"><b>Tapa blanda</b> 21,95 €<small>Comprar en <span class="dominio">Amazon</span></small></a>
           </div>
         </div>
         <p class="otros cambiar">¿No es tu tienda? Ebook: <a data-formato="ebook" data-tienda="es">España</a> · <a data-formato="ebook" data-tienda="mx">México</a> · <a data-formato="ebook" data-tienda="us">Otros países</a><br>Tapa blanda: <a data-formato="tapa" data-tienda="es">España</a> · <a data-formato="tapa" data-tienda="us">Otros países</a></p>
@@ -633,7 +632,7 @@ var ASIN_TAPA = '8409934167';
   function activar(formato, asin, t) {
     var bt = document.getElementById('comprar-' + formato);
     enlace(bt, t, asin);
-    bt.querySelector('small').textContent = DOMINIO[t];
+    bt.querySelector('.dominio').textContent = DOMINIO[t];
     document.querySelectorAll('.cambiar a[data-formato="' + formato + '"]').forEach(function(a){ enlace(a, a.dataset.tienda, asin); });
   }
   activar('ebook', ASIN, tienda);
