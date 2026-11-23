@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Brujas de Aerthea en Goodreads</title>
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Enlace corto para redes: brujasdeaerthea.com/goodreads → ficha del libro en Goodreads.
+     GoatCounter cuenta la visita (como /goodreads) antes de redirigir. -->
+<script>
+  var DESTINO = 'https://www.goodreads.com/book/show/262441399';
+  window.goatcounter = {no_onload: true};
+  var irse = function () { location.replace(DESTINO); };
+  var contar = function () {
+    try { window.goatcounter.count({path: '/goodreads'}); } catch (e) {}
+    setTimeout(irse, 300);
+  };
+</script>
+<script data-goatcounter="https://brujasdeaerthea.goatcounter.com/count" async src="//gc.zgo.at/count.js" onload="contar()" onerror="irse()"></script>
+<script>setTimeout(irse, 1500);</script>
+<noscript><meta http-equiv="refresh" content="0; url=https://www.goodreads.com/book/show/262441399"></noscript>
+</head>
+<body style="background:#0b1220;color:#e7f4fe;font-family:Georgia,serif;text-align:center;padding:3rem">
+<p><a href="https://www.goodreads.com/book/show/262441399" style="color:#5fa8d3">Ir a Brujas de Aerthea en Goodreads</a></p>
+</body>
+</html>
