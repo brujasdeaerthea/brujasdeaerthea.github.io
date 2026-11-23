@@ -7,7 +7,7 @@
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="description" content="Compra El Secreto de Violet, novela de fantasía oscura de Ángel Hache (Brujas de Aerthea I): ebook por 3,99 € en Amazon España, México y .com, y tapa blanda. Ya a la venta.">
+<meta name="description" content="Compra El Secreto de Violet, novela de fantasía oscura de Ángel Hache (Brujas de Aerthea I): en ebook Kindle y tapa blanda en Amazon España, México y .com. Nº1 en Amazon en fantasía oscura juvenil.">
 <meta name="author" content="Ángel Hache">
 <link rel="canonical" href="https://brujasdeaerthea.com/comprar">
 
@@ -43,7 +43,7 @@
     "url": "https://www.amazon.es/dp/B0HPBHXKMN",
     "offers": {
       "@type": "Offer",
-      "price": "3.99",
+      "price": "4.99",
       "priceCurrency": "EUR",
       "availability": "https://schema.org/InStock",
       "url": "https://www.amazon.es/dp/B0HPBHXKMN"
@@ -87,7 +87,12 @@ nav a:hover{color:var(--plata)}
 
 /* Compra */
 .compra{padding:3.5rem 1.2rem 4rem;background:linear-gradient(rgba(11,18,32,.7),var(--noche)),url("img/portada-bosque.jpg") center/cover,var(--bruma)}
-.compra .dos{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:3rem;align-items:center;max-width:960px;margin:auto}
+.compra .dos{display:grid;grid-template-columns:minmax(0,340px) 1fr;grid-template-areas:"portada info" "portada zona";column-gap:3rem;align-content:center;max-width:960px;margin:auto}
+.compra .portada{grid-area:portada;align-self:center}
+.info{grid-area:info;align-self:end}
+.zona{grid-area:zona}
+.sin-kindle{font-size:.88rem;color:var(--tenue);margin-top:.8rem;max-width:520px}
+.aviso-precio{display:block;font-size:.78rem;letter-spacing:.04em;margin-top:.25rem;color:#ffd9e0}
 .compra .portada{border-radius:3px;box-shadow:0 18px 50px rgba(0,0,0,.6)}
 .antetitulo{font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;color:var(--azul)}
 .compra h1{font-size:clamp(2.4rem,6vw,4rem);margin:.4rem 0 .8rem}
@@ -127,11 +132,20 @@ nav a:hover{color:var(--plata)}
 @media(max-width:800px){.resenas-lista{grid-template-columns:1fr;max-width:520px}}
 .otros a{color:var(--azul)}
 @media(max-width:720px){
-  .compra{padding-top:2.5rem}
-  .compra .dos{grid-template-columns:1fr;gap:2rem;text-align:center}
-  .compra .portada{max-width:240px;margin:auto}
-  .separador{margin:1.4rem auto}
-  .formatos{margin-left:auto;margin-right:auto}
+  /* Móvil: portada pequeña al lado del título para que los botones de compra se vean sin bajar */
+  .compra{padding:1.4rem 1rem 2.5rem}
+  .compra .dos{grid-template-columns:104px 1fr;grid-template-areas:"portada info" "zona zona";column-gap:1rem;row-gap:1rem}
+  .compra .portada{align-self:start;box-shadow:0 8px 24px rgba(0,0,0,.6)}
+  .info{align-self:center}
+  .antetitulo{font-size:.7rem;letter-spacing:.12em}
+  .compra h1{font-size:1.85rem;margin:.25rem 0 .35rem}
+  .autoria{margin:0;font-size:.88rem}
+  .gancho{font-size:.98rem;line-height:1.6;margin-bottom:1rem}
+  .fecha,.separador{display:none}
+  .formatos{gap:.7rem}
+  .formatos .boton{padding:.75rem .5rem}
+  .zona{text-align:center}
+  .sin-kindle{margin-left:auto;margin-right:auto}
 }
 
 /* Newsletter */
@@ -234,22 +248,23 @@ footer a:hover{color:var(--plata)}
   <section class="compra">
     <div class="dos">
       <img class="portada" src="img/portada-ebook.jpg" width="720" height="1038" alt="Portada de Brujas de Aerthea: El Secreto de Violet, ilustración de Ricardo Hortigüela">
-      <div>
-        <p class="antetitulo">Ya disponible · Brujas de Aerthea I</p>
+      <div class="info">
+        <p class="antetitulo">Nº1 en Amazon · Fantasía oscura juvenil</p>
         <h1>El Secreto de Violet</h1>
-        <p class="autoria">Una novela de Ángel Hache</p>
+        <p class="autoria">Brujas de Aerthea I · Ángel Hache</p>
+      </div>
+      <div class="zona">
         <p class="gancho">Despierta sin recuerdos, encerrada en una jaula y acusada de ser un demonio. Pero ella sabe algo que los demás ignoran: no pertenece a ese mundo.</p>
-        <p class="fecha"><strong>Ya a la venta</strong> en ebook y tapa blanda.</p>
-        <img class="separador" src="img/separador-sol-lunas.svg" alt="" width="363" height="34">
 
         <div class="formatos">
           <div class="formato">
-            <a class="boton" id="comprar-ebook" data-formato="ebook" href="https://www.amazon.es/dp/B0HPBHXKMN"><b>Ebook Kindle</b> 3,99 €<small>Comprar en <span class="dominio">Amazon</span></small></a>
+            <a class="boton" id="comprar-ebook" data-formato="ebook" href="https://www.amazon.es/dp/B0HPBHXKMN"><b>Comprar ebook</b> <span class="precio-ebook">4,99 €</span><small>en <span class="dominio">Amazon</span></small></a>
           </div>
           <div class="formato" id="tapa">
-            <a class="boton" id="comprar-tapa" data-formato="tapa" href="https://www.amazon.es/dp/8409934167"><b>Tapa blanda</b> 21,95 €<small>Comprar en <span class="dominio">Amazon</span></small></a>
+            <a class="boton" id="comprar-tapa" data-formato="tapa" href="https://www.amazon.es/dp/8409934167"><b>Comprar tapa blanda</b> 21,95 €<small>en <span class="dominio">Amazon</span></small></a>
           </div>
         </div>
+        <p class="sin-kindle">¿Sin Kindle? El ebook se lee en el móvil con la app gratuita de Kindle.</p>
         <p class="otros cambiar">¿No es tu tienda? Ebook: <a data-formato="ebook" data-tienda="es">España</a> · <a data-formato="ebook" data-tienda="mx">México</a> · <a data-formato="ebook" data-tienda="us">Otros países</a><br>Tapa blanda: <a data-formato="tapa" data-tienda="es">España</a> · <a data-formato="tapa" data-tienda="us">Otros países</a></p>
 
         <p class="otros leer"><a href="#suscribete">O lee gratis el prólogo y los primeros capítulos&nbsp;↓</a></p>
@@ -636,6 +651,13 @@ var ASIN_TAPA = '8409934167';
     document.querySelectorAll('.cambiar a[data-formato="' + formato + '"]').forEach(function(a){ enlace(a, a.dataset.tienda, asin); });
   }
   activar('ebook', ASIN, tienda);
+
+  /* Precio del ebook: 3,99 € hasta el lunes 23 nov a medianoche (hora de España); después, 4,99 €.
+     El HTML ya dice 4,99 €, así que pasada la fecha este bloque no hace nada y se puede borrar. */
+  if (Date.now() < Date.UTC(2026, 10, 23, 23, 0)) {
+    var pe = document.querySelector('.precio-ebook');
+    pe.innerHTML = '3,99 €<span class="aviso-precio">Último día a este precio</span>';
+  }
   /* Tapa blanda: Amazon México no la vende (KDP no imprime para .com.mx), así que México va a .com */
   activar('tapa', ASIN_TAPA, tienda === 'mx' ? 'us' : tienda);
 })();
