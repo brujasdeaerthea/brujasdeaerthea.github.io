@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Secreto de Violet en Amazon</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://brujasdeaerthea.com/comprar">
+<!-- Enlace directo a Amazon para anuncios y enlaces de redes: brujasdeaerthea.com/amazon
+     Cuenta la visita en GoatCounter (como clic en Amazon, con la red de origen) y lleva al ebook
+     en la tienda de Amazon de cada país, sin pasar por /comprar.
+     Para la tapa blanda: brujasdeaerthea.com/amazon?formato=tapa -->
+<script>
+(function(){
+  var ASIN = 'B0HPBHXKMN', ASIN_TAPA = '8409934167';
+  var DOMINIO = {es: 'amazon.es', mx: 'amazon.com.mx', us: 'amazon.com'};
+  var p = new URLSearchParams(location.search);
+  var origen = (p.get('utm_source') || 'directo').replace(/[^a-z0-9_-]/gi,'');
+  var tapa = p.get('formato') === 'tapa';
+  var zona = '';
+  try { zona = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e) {}
+  var lengua = (navigator.language || '').toLowerCase();
+  var tienda = 'us';
+  if (/^(Europe\/|Atlantic\/Canary|Africa\/Ceuta)/.test(zona)) tienda = 'es';
+  else if (lengua === 'es-mx' || /^America\/(Mexico_City|Monterrey|Merida|Cancun|Chihuahua|Hermosillo|Mazatlan|Tijuana|Matamoros|Bahia_Banderas|Ojinaga|Ciudad_Juarez)$/.test(zona)) tienda = 'mx';
+  else if (!zona && lengua === 'es-es') tienda = 'es';
+  if (tapa && tienda === 'mx') tienda = 'us'; /* Amazon México no vende la tapa blanda */
+  var destino = 'https://www.' + DOMINIO[tienda] + '/dp/' + (tapa ? ASIN_TAPA : ASIN);
+  var ido = false;
+  function ir(){ if (ido) return; ido = true; location.replace(destino); }
+  /* Mismo nombre de evento que los botones de /comprar, con «directo» delante: precompra-directo-es-instagram */
+  window.goatcounter = {no_onload: true};
+  window.alContar = function(){
+    try {
+      window.goatcounter.count({path: (tapa ? 'compra-tapa-directo-' : 'precompra-directo-') + tienda + '-' + origen, title: 'Enlace directo a Amazon', event: true});
+    } catch(e) {}
+    setTimeout(ir, 150);
+  };
+  /* Si la analítica no carga (bloqueadores), se va igual a Amazon */
+  setTimeout(ir, 1200);
+  window.destinoAmazon = destino;
+})();
+</script>
+<script data-goatcounter="https://brujasdeaerthea.goatcounter.com/count" async src="//gc.zgo.at/count.js" onload="alContar()" onerror="location.replace(window.destinoAmazon)"></script>
+</head>
+<body style="background:#0b1220;color:#e7f4fe;font-family:Georgia,serif;text-align:center;padding:3rem">
+<p>Abriendo Amazon…</p>
+<p><a href="/comprar" style="color:#5fa8d3">Si no se abre, pulsa aquí</a></p>
+</body>
+</html>
